@@ -1,0 +1,12 @@
+2018-09-29 18:04:15,143 - 接口测试日志 - INFO - 测试开始...
+2018-09-29 18:04:15,589 - 接口测试日志 - INFO - 
+case name: 登陆, 
+request data: {'username': 'qinshiqiang@addnewer.com', 'remember': 1, 'password': 'cae5c72cbecaa37782875028870c9235', 'domain': 'http://account.test.com'}, 
+response: [200, {'code': 0, 'data': {'token': 'e7e66c0ced4281746a7ae972f1142c905993c333', 'flag': 0, 'id': 240, 'user_pic': None, 'org_id': 1, 'org_logo': '/pic/logo/5b6cfa4048a98.png', 'property': '1', 'login_url': '/login', 'transfer_url': None, 'mobile': None}, 'msg': '成功'}]
+===================================================
+2018-09-29 18:04:16,602 - 接口测试日志 - INFO - 
+case name: 保存excel, 
+request data: {"datasource": "datasource1", "fileName": "fileName1", "folder": 0, "header": [{"data_type": "Integer", "is_add": false, "is_measures": true, "is_null": false, "name": "RM\u6d3b\u52a8ID"}, {"data_type": "Integer", "is_add": false, "is_measures": true, "is_null": false, "name": "\u8bbe\u5907ID"}]}, 
+response: [200, {'code': 90011, 'msg': 'Failure, uploaded for a long time not saved, please upload again', 'data': []}]
+===================================================
+2018-09-29 18:04:16,605 - 接口测试日志 - INFO - 结束测试...

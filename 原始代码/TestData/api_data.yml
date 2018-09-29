@@ -1,0 +1,30 @@
+api_User_login:
+    data: 
+        username: qinshiqiang@addnewer.com
+        remember: 1
+        password: cae5c72cbecaa37782875028870c9235
+        domain: http://account.test.com
+    headers:
+        content-type: application/x-www-form-urlencoded; charset=UTF-8
+    method: POST
+    
+api_Upload_Excel_saveExcel:
+    headers:
+        content-type: application/json;charset=UTF-8
+        token: eweewdadadada
+    json:
+        datasource: datasource1
+        fileName: fileName1
+        folder: 0
+        header:
+        -   data_type: 1
+            is_add: false
+            is_measures: true
+            is_null: false
+            name: RM活动ID
+        -   data_type: 22
+            is_add: false
+            is_measures: true
+            is_null: false
+            name: 设备ID
+    method: POST
