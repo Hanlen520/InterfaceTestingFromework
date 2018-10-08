@@ -1,0 +1,89 @@
+
+test_data = {
+"case_name":"dataset列表，新建文件夹",
+"hosts":"http://front.test.rmos.com",
+"befroeClass":{
+    "operation":"api",
+    "api_name":"用户登录",
+    "url":"http://account.test.com/api/User/login",
+    "method":"post",
+    "headers":{
+        "content-type":"application/x-www-form-urlencoded; charset=UTF-8"
+        },
+    "request_type":"form",
+    "request_data":{
+        "username":"liuxiaolei@addnewer.com",
+        "password":"2902ea1c1cc2c770a29e08fbfe422e0a"
+        },
+    "response":{
+        "token":"response.data.token"
+        }
+    },
+"setup":{
+    "operation":"api",
+    "api_name":"用户登录",
+    "url":"http://account.test.com/api/User/login",
+    "method":"post",
+    "headers":{
+        "content-type":"application/x-www-form-urlencoded; charset=UTF-8"
+        },
+    "request_type":"form",
+    "request_data":{
+        "username":"liuxiaolei@addnewer.com",
+        "password":"2902ea1c1cc2c770a29e08fbfe422e0a"
+        },
+    "response":{
+        "token":"response.data.token"
+        }
+    },
+"testcase":[
+    {
+        "No":1,
+        "Description":"正确新建文件夹",
+        "url":"http://front.test.rmos.com/api/DataSet/Folder/createFolder",
+        "method":"post",
+        "headers":{
+            "Content-Type":"application/json;charset=UTF-8",
+            "token":"550247259e654453283543e635de6ae4bbfac625"
+            },
+        "request_type":"json",
+        "request_data":{
+            "name":"auto_test_folder"
+            },
+        "assert":"equal",
+        "check_point":{
+            "status_code":200,
+            "response.code":0,
+            "response.msg":"成功",
+            "response.data":{}
+            },
+        "Correlation":{
+            "code":"response.code"
+            }
+        },
+    {
+        "No":2,
+        "Description":"文件夹名称为空时，保存",
+        "url":"http://front.test.rmos.com/api/DataSet/Folder/createFolder",
+        "method":"post",
+        "headers":{
+            "Content-Type":"application/json;charset=UTF-8",
+            "token":"550247259e654453283543e635de6ae4bbfac625"
+            },
+        "request_type":"json",
+        "request_data":{
+            "name":""
+            },
+        "assert":"equal",
+        "check_point":{
+            "status_code":200,
+            "response.code":78104,
+            "response.msg":"这个提示肯定是错误的",
+            "response.data":{}
+            },
+        "Correlation":{
+            "code":"response.code"
+            }
+        }
+    ]
+}
