@@ -1,0 +1,21 @@
+api_Upload_Excel_saveExcel:
+    url: http://front.test.rmos.com/api/Upload/Excel/saveExcel
+    headers:
+        content-type: application/json;charset=UTF-8
+        token: eweewdadadada
+    json:
+        datasource: datasource1
+        fileName: fileName1
+        folder: 0
+        header:
+        -   data_type: 1
+            is_add: false
+            is_measures: true
+            is_null: false
+            name: RM活动ID
+        -   data_type: 22
+            is_add: false
+            is_measures: true
+            is_null: false
+            name: 设备ID
+    method: POST
