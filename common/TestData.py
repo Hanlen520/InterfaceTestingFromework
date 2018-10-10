@@ -3,12 +3,14 @@
 
 import os
 import sys
+sys.path.append(os.path.abspath(os.path.join(os.getcwd(), "..")))
 import yaml
 import xlrd
 import json
 import configparser
 from common.TestLogger import *
 from common.Common import *
+
 
 class GetData:
 
@@ -85,6 +87,7 @@ class GetData:
 		:param name: api的名称
 		:return: 对应的数据 {name:{}}
 		'''
+		yml=[]
 		yml_files = self.list_all_files(self.yml_path)
 		for yml_file in yml_files:
 			if name + '.yml' in yml_file:

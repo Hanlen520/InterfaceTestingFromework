@@ -1,8 +1,11 @@
 #!/usr/bin/env python
 #coding=utf-8
 
+import os
+import sys
 import requests
-from test_logger import logger
+sys.path.append(os.path.abspath(os.path.join(os.getcwd(), "..")))
+from common.TestLogger import *
 
 class TestRequest:
 	
