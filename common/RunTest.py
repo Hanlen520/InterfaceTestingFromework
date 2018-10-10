@@ -1,16 +1,11 @@
 #!/usr/bin/env python
 #coding=utf-8
 
-import os
-import sys
-sys.path.append(os.path.abspath(os.path.join(os.getcwd(), "..")))
-import json
 import time
 import unittest
-from common import HTMLTestRunner
-from common import *
-from common.TestData import *
-from common.TestRequest import *
+import HTMLTestRunner
+from TestData import *
+from TestRequest import *
 
 class RunTest:
 	

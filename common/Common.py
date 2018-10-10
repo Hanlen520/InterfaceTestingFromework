@@ -1,14 +1,11 @@
 #!/usr/bin/env python
 #coding=utf-8
 
-import os
 import re
-import sys
-sys.path.append(os.path.abspath(os.path.join(os.getcwd(), "..")))
 import ast
 import pymysql
 import hashlib
-from common.TestLogger import *
+from TestLogger import *
 
 function_regexp = r"\$\{([\w_]+\([\$\w\.\-/_ =,]*\))\}"
 
