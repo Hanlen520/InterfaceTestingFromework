@@ -8,9 +8,7 @@ import yaml
 import xlrd
 import json
 import configparser
-from common.TestLogger import *
 from common.Common import *
-
 
 class GetData:
 
@@ -117,7 +115,7 @@ class GetData:
 					files.append(excel_file)
 		return files
 	
-	def chang_check_point(self, check_point):
+	def change_check_point(self, check_point):
 		try:
 			check_point = check_point.split(';') if check_point != '' else ''
 		except BaseException as e:
@@ -139,7 +137,7 @@ class GetData:
 			host = self.get_config_data('Host', host)
 			case['url'] = host + '/' + case['url'].split('/',3)[-1]
 		case['Correlation'] = parse_data(case['Correlation'])
-		case['Check Point'] = self.chang_check_point(case['Check Point'])
+		case['Check Point'] = self.change_check_point(case['Check Point'])
 		return case
 		
 	def get_case_data(self):
