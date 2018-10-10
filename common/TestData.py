@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 #coding=utf-8
 
+
 import yaml
 import xlrd
 import json
@@ -147,6 +148,7 @@ class GetData:
 		all_caseinfo = []
 		# 遍历所有要执行的excel
 		for file in files:
+			filename = os.path.split(file)[1].replace('.xlsx','')
 			test_case = xlrd.open_workbook(file)
 			sheets = test_case.sheet_names()
 			sheetinfo = []
@@ -154,6 +156,7 @@ class GetData:
 			for sheet in sheets:
 				test_data = {}
 				table = test_case.sheet_by_name(sheet)
+				test_data['sheet_name'] = filename + '_' +sheet
 				test_data['Active'] = table.cell(10, 1).value      # Active
 				# Active为No则跳过执行
 				if test_data['Active'] == 'No':
