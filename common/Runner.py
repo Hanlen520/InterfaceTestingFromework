@@ -6,7 +6,6 @@ import unittest
 import HTMLTestRunner
 from TestRequest import *
 from TestData import *
-from Report import *
 from BeautifulReport import BeautifulReport
 
 report_path = os.path.abspath('..') + '\\report'
