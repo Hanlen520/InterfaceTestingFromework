@@ -25,7 +25,7 @@ def extract_functions(content):
         extract = re.findall(function_regexp, content)[0]
     except TypeError:
         logger.error(u'函数输入错误：{}'.format(content))
-        return []
+        return
     method = re.findall('(.*?)\(', extract)[0]
     params = re.findall('\((.*?)\)', extract)[0]
     params = params.split(',') if ',' in params else params
@@ -33,7 +33,7 @@ def extract_functions(content):
         return eval(method)(params)
     except BaseException as e:
         logger.error(u'参数输入错误：{}, {}'.format(params, e))
-        return []
+        return
 
 def parse_string_value(str_value):
     '''

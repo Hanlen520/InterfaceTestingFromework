@@ -33,6 +33,7 @@ class GetData:
 			yml_data = self.get_yml_data(self.change_api_name(operation['API Name']))
 			if not yml_data:
 				logger.warning(u'没有对应的yml数据：{}'.format(self.change_api_name(operation['API Name'])))
+				return {}
 			# 逐个替换数据
 			for i in args:
 				parse_function(i, yml_data)
@@ -121,7 +122,7 @@ class GetData:
 		# 如："Check Point": { "code": ["0","=" ], "data.ord_id": [ "1","in"],"msg": ["\u6210\u529f","="]
 		check_point = {re.split('\s.*?\s', c)[1]:[re.split('\s.*?\s', c)[0], re.findall('\s(.*?)\s', c)[0]] for c in check_point} if check_point != '' else ''
 		return check_point
-		
+	
 	def change_case_info(self, case):
 		yml_data = self.change_request_info(case, case['Request Headers'], case['Request Data'])
 		# yml数据加到case信息中
@@ -210,17 +211,17 @@ class GetData:
 				title = {i: str(table.cell(12, i).value).strip().strip('\r').strip('\n') for i in range(table.ncols)}
 				# setup信息
 				setup = {title[i]: str(table.cell(13, i).value).strip().strip('\r').strip('\n') for i in range(table.ncols)}
-				setup = self.change_case_info(setup)
+				# setup = self.change_case_info(setup)
 				# teardown信息
 				teardown = {title[i]: str(table.cell(14, i).value).strip().strip('\r').strip('\n') for i in range(table.ncols)}
-				teardown = self.change_case_info(teardown)
+				# teardown = self.change_case_info(teardown)
 				caselist = []
 				# 所有的case信息
 				for j in range(15, table.nrows):
 					case = {title[i] : str(table.cell(j, i).value).strip().strip('\r').strip('\n') for i in range(table.ncols)}
 					if case['Active'] == 'No':
 						continue
-					case = self.change_case_info(case)
+					# case = self.change_case_info(case)
 					caselist.append(case)
 				test_data['setup'] = setup
 				test_data['teardown'] = teardown
