@@ -44,13 +44,18 @@ def test_generator(case_data, isSetupOrCase='case'):
 		self.assertIsNotNone(yml_data)
 		for key, value in yml_data.items():
 			case_data[key] = value
-		content_type = case_data['headers']['content-type']
-		request_data = json.dumps(case_data['json']) if 'json' in content_type else case_data['data']
-		url = case_data['url']
 		method = case_data['method']
-		headers = case_data['headers']
-		resp = TestRequest().test_request(url, method, headers, request_data)
-		# print(resp)
+		url = case_data['url']
+		if str(method).lower() == 'get':
+			resp = TestRequest().test_request(url, method)
+		elif str(method).lower() == 'post':
+			content_type = case_data['headers']['content-type']
+			request_data = json.dumps(case_data['json']) if 'json' in content_type else case_data['data']
+			headers = case_data['headers']
+			resp = TestRequest().test_request(url, method, headers, request_data)
+		else:
+			resp = [-1]
+			print(method)
 		self.assertEqual(resp[0], 200)
 		check_point = case_data['Check Point']
 		if check_point:

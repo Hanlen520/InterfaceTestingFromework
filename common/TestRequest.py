@@ -6,7 +6,7 @@ from TestLogger import *
 
 class TestRequest:
 	
-	def test_request(self, url, method, headers, data=None):
+	def test_request(self, url, method, headers=None, data=None):
 		'''
 		:param url: request地址
 		:param method: 方法get、post
