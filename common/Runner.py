@@ -49,7 +49,7 @@ def test_generator(case_data, isSetupOrCase='case'):
 							pass
 						change_data(yml_data, v, k)
 		# 如果没有API NAME信息失败
-		self.assertIsNotNone(yml_data)
+		self.assertIsNotNone(yml_data,'没有读取到API NAME信息')
 		method = case_data['method']
 		url = case_data['url']
 		headers = ''
@@ -75,7 +75,7 @@ def test_generator(case_data, isSetupOrCase='case'):
 			resp = [-1]
 			print(method)
 		# status code为200
-		self.assertEqual(resp[0], 200)
+		self.assertEqual(resp[0], 200,'status code不为200')
 		check_point = case_data['Check Point']
 		if check_point:
 			for key, value in check_point.items():
@@ -83,17 +83,17 @@ def test_generator(case_data, isSetupOrCase='case'):
 				key = parse_string(key)
 				if type(value) == str:
 					# 值为字符串直接对比
-					self.assertEqual(str(eval(str(resp[1]) + str(key))), value)
+					self.assertEqual(str(eval(str(resp[1]) + str(key))), value, '{}值不为{}'.format(key, value))
 				elif type(value) == list:
 					# 值为列表取对比方法
 					assertMethod = value[1]
 					# 目前支持=、in、not in
 					if assertMethod == '=':
-						self.assertEqual(str(eval(str(resp[1]) + str(key))), value[0])
+						self.assertEqual(str(eval(str(resp[1]) + str(key))), value[0],  '{}值不为{}'.format(key, value[0]))
 					elif str(assertMethod).lower() == 'in':
-						self.assertTrue(value[0] in str(eval(str(resp[1]) + str(key))))
+						self.assertTrue(value[0] in str(eval(str(resp[1]) + str(key))), '{}值不在{}中'.format(value[0], key))
 					elif str(assertMethod).lower() == 'not in':
-						self.assertTrue(value[0] not in str(eval(str(resp[1]) + str(key))))
+						self.assertTrue(value[0] not in str(eval(str(resp[1]) + str(key))),'{}值在{}中'.format(value[0], key))
 					# 错误的断言方法
 					else:
 						print(check_point)
