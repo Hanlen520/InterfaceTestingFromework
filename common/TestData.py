@@ -87,20 +87,11 @@ class GetData:
 		yml=[]
 		yml_files = self.list_all_files(self.yml_path)
 		for yml_file in yml_files:
-			if name + '.yml' in yml_file:
-				yml = yml_file
-				break
-		if not yml:
-			logger.warning('yml文件不存在：{}'.format(name))
-			return {}
-		with open(yml, 'rb') as f:
-			api_data = yaml.load(f)
-			# print(api_data)
-		try:
-			return api_data[name]
-		except BaseException as e:
-			logger.error('API不存在:{}'.format(e))
-			return {}
+			with open(yml_file, 'rb') as f:
+				api_data = yaml.load(f)
+				if name in api_data.keys():
+					return api_data[name]
+		return {}
 		
 	def get_excel_files(self):
 		excel_files = self.list_all_files(self.excel_path)
