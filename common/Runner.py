@@ -140,7 +140,9 @@ def run_test():
 		teardown_data = sheet_data['teardown']
 		case_datas = sheet_data['testcase']
 		setup = test_generator(setup_data,'setup')
+		teardown = test_generator(teardown_data, 'teardown')
 		setattr(TestSequense, 'setUp', setup)
+		setattr(TestSequense, 'tearDown', teardown)
 		for n, case_data in enumerate(case_datas):
 			test = test_generator(case_data)
 			description = case_data['Description']
