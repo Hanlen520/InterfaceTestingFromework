@@ -91,10 +91,11 @@ class GetData:
 				yml = yml_file
 				break
 		if not yml:
-			logger.warning('yml文件不存在：{}'.format(self.yml_path))
+			logger.warning('yml文件不存在：{}'.format(name))
 			return {}
 		with open(yml, 'rb') as f:
 			api_data = yaml.load(f)
+			# print(api_data)
 		try:
 			return api_data[name]
 		except BaseException as e:
@@ -115,12 +116,13 @@ class GetData:
 		return files
 	
 	def change_check_point(self, check_point):
-		try:
-			check_point = check_point.split(';') if check_point != '' else ''
-		except BaseException as e:
-			logger.error('check point填写错误：{}'.format(check_point))
-		# 如："Check Point": { "code": ["0","=" ], "data.ord_id": [ "1","in"],"msg": ["\u6210\u529f","="]
-		check_point = {re.split('\s.*?\s', c)[1]:[re.split('\s.*?\s', c)[0], re.findall('\s(.*?)\s', c)[0]] for c in check_point} if check_point != '' else ''
+		if not isinstance(check_point, dict):
+			try:
+				check_point = check_point.split(';') if check_point != '' else ''
+			except BaseException as e:
+				logger.error('check point填写错误：{}'.format(check_point))
+			# 如："Check Point": { "code": ["0","=" ], "data.ord_id": [ "1","in"],"msg": ["\u6210\u529f","="]
+			check_point = {re.split('\s.*?\s', c)[1]:[re.split('\s.*?\s', c)[0], re.findall('\s(.*?)\s', c)[0]] for c in check_point} if check_point != '' else ''
 		return check_point
 	
 	def change_case_info(self, case):
@@ -230,6 +232,3 @@ class GetData:
 			all_caseinfo.append(sheetinfo)
 		return all_caseinfo
 	
-if __name__ == '__main__':
-	p = GetData().get_case_data()
-	print(json.dumps(p, sort_keys=True, indent=2))

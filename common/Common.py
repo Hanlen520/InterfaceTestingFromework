@@ -52,8 +52,9 @@ def parse_data(data):
     :param function: 字符串：data1.0.data2=3;data4=5
     :return: {data1.0.data2:3, data4:5}
     '''
-    data = data.split(';') if data != '' else ''
-    data = {i.split('=')[0]: i.split('=')[1] for i in data} if data != '' else ''
+    if not isinstance(data, dict):
+        data = data.split(';') if data != '' else ''
+        data = {i.split('=')[0]: i.split('=')[1] for i in data} if data != '' else ''
     return data
 
 def change_data(data, value, k, i=0):
@@ -110,4 +111,5 @@ def manipulate_database(host, user, password, sql):
         db.rollback()
     db.close()
 
-    
+if __name__ == '__main__':
+    extract_functions('${abc(1,2)}')

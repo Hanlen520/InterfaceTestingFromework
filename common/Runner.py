@@ -46,13 +46,20 @@ def test_generator(case_data, isSetupOrCase='case'):
 			case_data[key] = value
 		method = case_data['method']
 		url = case_data['url']
+		headers = ''
+		request_data = ''
 		if str(method).lower() == 'get':
 			resp = TestRequest().test_request(url, method)
 		elif str(method).lower() == 'post':
 			content_type = case_data['headers']['content-type']
-			request_data = json.dumps(case_data['json']) if 'json' in content_type else case_data['data']
-			headers = case_data['headers']
-			resp = TestRequest().test_request(url, method, headers, request_data)
+			if 'multipart/form-data' not in content_type:
+				request_data = json.dumps(case_data['json']) if 'json' in content_type else case_data['data']
+				headers = case_data['headers']
+				resp = TestRequest().test_request(url, method, headers, request_data)
+			else:
+				request_data = parse_data(case_data['Request Data'])
+				headers = case_data['headers']
+				resp = eval('TestRequest().multipart_form_data')(url, headers, request_data)
 		else:
 			resp = [-1]
 			print(method)
@@ -82,21 +89,19 @@ def test_generator(case_data, isSetupOrCase='case'):
 			for key, value in correlation.items():
 				value = parse_string(value)
 				setattr(self, key, str(eval(str(resp[1]) + str(value))))
-		get_summary(url, method, headers, request_data, resp, isSetupOrCase)
+		get_summary(url=url, method=method, resp=resp, isSetupOrCase=isSetupOrCase, headers=headers, request_data=request_data)
 	return test
 
-def get_summary(url, method, headers, data, resp, isSetupOrCase):
-	print('{}: \n'
-	      'url: {}\n'
-	      'method: {}\n'
-	      'headers: {}\n'
-	      'data: {}\n'
-	      'status_code: {}\n'
-	      'response: {}\n'
-	      'response time: {}\n'
-	      '########################################################'.format(
-		isSetupOrCase, url, method, headers, data, resp[0], resp[1], resp[2]))
-
+def get_summary(**kwargs):
+	print('{}'.format(kwargs['isSetupOrCase']) + '\n')
+	print('url: {}'.format(kwargs['url']) + '\n')
+	print('method: {}'.format(kwargs['method']) + '\n')
+	print('request data: {}'.format(kwargs['request_data']) + '\n')
+	print('status code: {}'.format(kwargs['resp'][0]) + '\n')
+	print('response: {}'.format(kwargs['resp'][1]) + '\n')
+	print('response time: {}'.format(kwargs['resp'][2]) + '\n')
+	print('============================================================')
+	
 def get_sheetdata():
 	all_caseinfo = GetData().get_case_data()
 	for excel_datas in all_caseinfo:
@@ -136,9 +141,13 @@ def run_test():
 	
 	# runner = unittest.TextTestRunner()
 	# result = runner.run(test_suite)
-	# print(get_summary(result))
+	# print(result)
 	
 	result = BeautifulReport(test_suite)
 	result.report(filename= filename, description ='接口测试', log_path =report_path)
+
+
 if __name__ == "__main__":
 	run_test()
+	
+	
