@@ -15,8 +15,11 @@ def test_generator(case_data, isSetupOrCase='case'):
 		Data = GetData()
 		yml_data = None
 		if case_data['API Name'] != '':
+			# 根据API NAME找到yml数据
 			yml_data = Data.get_yml_data(Data.change_api_name(case_data['API Name']))
+			# 数据不为空
 			self.assertNotEqual(yml_data, {})
+			# yml数据加到case_data中
 			for key, value in yml_data.items():
 				case_data[key] = value
 			# 有Host信息则替换yml中的url对应的host
@@ -26,65 +29,81 @@ def test_generator(case_data, isSetupOrCase='case'):
 				case_data['url'] = host + '/' + case_data['url'].split('/', 3)[-1]
 			case_data['Correlation'] = parse_data(case_data['Correlation'])
 			case_data['Check Point'] = Data.change_check_point(case_data['Check Point'])
+			# 根据Request Headers和Request Data替换case_data中的数据
 			for function in [case_data['Request Headers'], case_data['Request Data']]:
 				function = parse_data(function)
 				if function:
 					for k, v in function.items():
 						k = k.split('.') if '.' in k else [k]
 						k = [parse_string_value(x) for x in k]
+						# 执行函数
 						if '${' in v:
 							v = extract_functions(v)
 							self.assertIsNotNone(v)
+						# 寻找变量
 						elif '$' in v:
 							v = getattr(self, v.replace('$', ''), None)
 							self.assertIsNotNone(v)
+						# 字符串
 						else:
 							pass
 						change_data(yml_data, v, k)
+		# 如果没有API NAME信息失败
 		self.assertIsNotNone(yml_data)
-		for key, value in yml_data.items():
-			case_data[key] = value
 		method = case_data['method']
 		url = case_data['url']
 		headers = ''
 		request_data = ''
+		# get放法
 		if str(method).lower() == 'get':
 			resp = TestRequest().test_request(url, method)
+		# post方法
 		elif str(method).lower() == 'post':
 			content_type = case_data['headers']['content-type']
+			# json和data形式
 			if 'multipart/form-data' not in content_type:
 				request_data = json.dumps(case_data['json']) if 'json' in content_type else case_data['data']
 				headers = case_data['headers']
 				resp = TestRequest().test_request(url, method, headers, request_data)
+			# 上传文件
 			else:
 				request_data = parse_data(case_data['Request Data'])
 				headers = case_data['headers']
 				resp = eval('TestRequest().multipart_form_data')(url, headers, request_data)
+		# 其他方法，遇到再补充
 		else:
 			resp = [-1]
 			print(method)
+		# status code为200
 		self.assertEqual(resp[0], 200)
 		check_point = case_data['Check Point']
 		if check_point:
 			for key, value in check_point.items():
+				# 转换形式data1.data2 ==> [data1][data2]
 				key = parse_string(key)
 				if type(value) == str:
+					# 值为字符串直接对比
 					self.assertEqual(str(eval(str(resp[1]) + str(key))), value)
 				elif type(value) == list:
+					# 值为列表取对比方法
 					assertMethod = value[1]
+					# 目前支持=、in、not in
 					if assertMethod == '=':
 						self.assertEqual(str(eval(str(resp[1]) + str(key))), value[0])
 					elif str(assertMethod).lower() == 'in':
 						self.assertTrue(value[0] in str(eval(str(resp[1]) + str(key))))
 					elif str(assertMethod).lower() == 'not in':
 						self.assertTrue(value[0] not in str(eval(str(resp[1]) + str(key))))
+					# 错误的断言方法
 					else:
 						print(check_point)
 						self.assertEqual('Check Point', '断言方法')
+				# 错误的断言方法
 				else:
 					print(check_point)
 					self.assertEqual('Check Point', '断言方法')
 		correlation = case_data['Correlation']
+		# 取值，保存为类变量
 		if correlation:
 			for key, value in correlation.items():
 				value = parse_string(value)

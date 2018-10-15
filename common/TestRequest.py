@@ -28,6 +28,12 @@ class TestRequest:
 		return [resp.status_code, resp.json(), resp.elapsed.total_seconds()]
 	
 	def multipart_form_data(self, url, headers, request_data):
+		'''
+		:param url: 请求url
+		:param headers: 包含token的请求头
+		:param request_data: file=aaa.xlsx，isAdd=0
+		:return:
+		'''
 		if not 'file' in request_data.keys():
 			return [-1]
 		file = file_path + '\\' + request_data['file']
