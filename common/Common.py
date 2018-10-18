@@ -4,37 +4,46 @@
 import re
 import ast
 import pymysql
-import hashlib
+from Func import *
 from TestLogger import *
 
 function_regexp = r"\$\{([\w_]+\([\$\w\.\-/_ =,]*\))\}"
 
-def gen_md5(password):
-    '''
-    :param password: 密码
-    :return: md5加密
-    '''
-    return hashlib.md5(password.encode('utf-8')).hexdigest()
 
-def extract_functions(content):
+def extract_functions(content,cls=None):
     '''
     :param content: ${abc(1,2)}
     :return: 执行abc(1,2)函数返回值
     '''
     try:
-        extract = re.findall(function_regexp, content)[0]
+        content = re.findall(function_regexp, content)[0]
     except TypeError:
-        logger.error(u'函数输入错误：{}'.format(content))
         return
-    method = re.findall('(.*?)\(', extract)[0]
-    params = re.findall('\((.*?)\)', extract)[0]
-    params = params.split(',') if ',' in params else params
-    try:
-        return eval(method)(params)
-    except BaseException as e:
-        logger.error(u'参数输入错误：{}, {}'.format(params, e))
-        return
-
+    pattern = re.compile('\((.*?)\)')
+    params = re.findall(pattern,content)[0]
+    params = params.split(',') if ',' in params else [params]
+    for n, p in enumerate(params):
+        if '$' in p:
+            p = parse_string_value(getattr(cls, p.replace('$', ''), 'not_defined'))
+            params[n] = repr(p)
+    if len(params) == 1:
+        params = params[0]
+        content = content.split('(')[0]
+        try:
+            return eval(content)(params)
+        except BaseException as e:
+            logger.error(u'参数输入错误：{}, {}'.format(params, e))
+            return
+    else:
+        params = '(' + ','.join(params) + ')'
+        content = content.split('(')[0] + params
+        # print(content)
+        try:
+            return eval(content)
+        except BaseException as e:
+            logger.error(u'参数输入错误：{}, {}'.format(params, e))
+            return
+        
 def parse_string_value(str_value):
     '''
     :param str_value: str, 如：3, [1,2,3], {a:1, b:2}
@@ -112,4 +121,4 @@ def manipulate_database(host, user, password, sql):
     db.close()
 
 if __name__ == '__main__':
-    extract_functions('${abc(1,2)}')
+    a= extract_functions('${getDataSetListId(1,$2)}')
