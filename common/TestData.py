@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 #coding=utf-8
 
-
+import os
 import yaml
 import xlrd
 import json
@@ -204,10 +204,8 @@ class GetData:
 				title = {i: str(table.cell(12, i).value).strip().strip('\r').strip('\n') for i in range(table.ncols)}
 				# setup信息
 				setup = {title[i]: str(table.cell(13, i).value).strip().strip('\r').strip('\n') for i in range(table.ncols)}
-				# setup = self.change_case_info(setup)
 				# teardown信息
 				teardown = {title[i]: str(table.cell(14, i).value).strip().strip('\r').strip('\n') for i in range(table.ncols)}
-				# teardown = self.change_case_info(teardown)
 				caselist = []
 				# 所有的case信息
 				for j in range(15, table.nrows):
