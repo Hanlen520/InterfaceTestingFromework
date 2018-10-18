@@ -6,6 +6,7 @@ import unittest
 import HTMLTestRunner
 from TestRequest import *
 from TestData import *
+from Func import *
 from BeautifulReport import BeautifulReport
 
 report_path = os.path.abspath('..') + '\\report'
@@ -15,6 +16,14 @@ def test_generator(case_data, isSetupOrCase='case'):
 		Data = GetData()
 		yml_data = None
 		if case_data['API Name'] != '':
+			# 如果执行函数
+			if '${' in  case_data['API Name']:
+				check = extract_functions(case_data['API Name'], self)
+				self.assertTrue(check)
+				print('{}'.format(isSetupOrCase) + '\n')
+				print('函数{}执行成功'.format(case_data['API Name']) + '\n')
+				print('============================================================')
+				return test
 			# 根据API NAME找到yml数据
 			yml_data = Data.get_yml_data(Data.change_api_name(case_data['API Name']))
 			# 数据不为空
@@ -106,8 +115,17 @@ def test_generator(case_data, isSetupOrCase='case'):
 		# 取值，保存为类变量
 		if correlation:
 			for key, value in correlation.items():
-				value = parse_string(value)
-				setattr(self, key, str(eval(str(resp[1]) + str(value))))
+				# 区分request和resp，分别取值
+				if 'request.' in value:
+					if 'json' in value:
+						value = parse_string(value.replace('request.json.', ''))
+						setattr(self, key, str(eval(str(json.loads(request_data)) + str(value))))
+					else:
+						value = parse_string(value.replace('request.data.', ''))
+						setattr(self, key, str(eval(str(request_data) + str(value))))
+				else:
+					value = parse_string(value)
+					setattr(self, key, str(eval(str(resp[1]) + str(value))))
 		get_summary(url=url, method=method, resp=resp, isSetupOrCase=isSetupOrCase, headers=headers, request_data=request_data)
 	return test
 
