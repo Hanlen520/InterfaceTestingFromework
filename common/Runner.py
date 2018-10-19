@@ -13,6 +13,10 @@ report_path = os.path.abspath('..') + '\\report'
 
 def test_generator(case_data, isSetupOrCase='case'):
 	def test(self):
+		if isSetupOrCase == 'setup' or isSetupOrCase == 'teardown':
+			if case_data['API Name'] == '':
+				print('{}为空'.format(isSetupOrCase))
+				return test
 		Data = GetData()
 		yml_data = None
 		if case_data['API Name'] != '':
@@ -52,7 +56,7 @@ def test_generator(case_data, isSetupOrCase='case'):
 						# 寻找变量
 						elif '$' in v:
 							v = getattr(self, v.replace('$', ''), None)
-							self.assertIsNotNone(v)
+							self.assertIsNotNone(v, '未定义变量{}'.format(v))
 						# 字符串
 						else:
 							pass
