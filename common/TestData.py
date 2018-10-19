@@ -138,7 +138,7 @@ class GetData:
 		'''
 		files = self.get_excel_files()
 		if not files:
-			return {}
+			return []
 		all_caseinfo = []
 		# 遍历所有要执行的excel
 		for file in files:

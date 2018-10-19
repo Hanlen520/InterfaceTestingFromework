@@ -65,7 +65,7 @@ def test_generator(case_data, isSetupOrCase='case'):
 		request_data = ''
 		# get放法
 		if str(method).lower() == 'get':
-			resp = TestRequest().test_request(url, method)
+			resp = TestRequest.test_request(url, method)
 		# post方法
 		elif str(method).lower() == 'post':
 			content_type = case_data['headers']['content-type']
@@ -73,12 +73,12 @@ def test_generator(case_data, isSetupOrCase='case'):
 			if 'multipart/form-data' not in content_type:
 				request_data = json.dumps(case_data['json']) if 'json' in content_type else case_data['data']
 				headers = case_data['headers']
-				resp = TestRequest().test_request(url, method, headers, request_data)
+				resp = TestRequest.test_request(url, method, headers, request_data)
 			# 上传文件
 			else:
 				request_data = parse_data(case_data['Request Data'])
 				headers = case_data['headers']
-				resp = eval('TestRequest().multipart_form_data')(url, headers, request_data)
+				resp = eval('TestRequest.multipart_form_data')(url, headers, request_data)
 		# 其他方法，遇到再补充
 		else:
 			resp = [-1]

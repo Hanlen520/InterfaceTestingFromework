@@ -10,7 +10,8 @@ file_path = os.path.abspath('..') + '\\file'
 
 class TestRequest:
 	
-	def test_request(self, url, method, headers=None, data=None):
+	@staticmethod
+	def test_request(url, method, headers=None, data=None):
 		'''
 		:param url: request地址
 		:param method: 方法get、post
@@ -27,7 +28,8 @@ class TestRequest:
 			return
 		return [resp.status_code, resp.json(), resp.elapsed.total_seconds()]
 	
-	def multipart_form_data(self, url, headers, request_data):
+	@staticmethod
+	def multipart_form_data(url, headers, request_data):
 		'''
 		:param url: 请求url
 		:param headers: 包含token的请求头
