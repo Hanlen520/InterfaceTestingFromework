@@ -63,7 +63,7 @@ class GetData:
 		'''
 		config_path = self.work_path + '/config.ini'
 		config = configparser.ConfigParser()
-		config.read(config_path)
+		config.read(config_path, encoding="utf-8-sig")
 		if option:
 			try:
 				value = config.get(section, option)
