@@ -80,13 +80,17 @@ def change_data(data, value, k, i=0):
         data[k[i]] = value
         return
     change_data(data[k[i]], value, k, i + 1)
+
+def change_str(string):
+    new_str = parse_string_value(string)
+    return repr(new_str) if type(new_str) == str else new_str
     
 def parse_string(str_value):
     '''
     data ==> [data]
     data1.data2 ==> [data1][data2]
     '''
-    return ''.join(["['{}']".format(i) for i in str_value.split('.')]) if '.' in str_value else [str_value]
+    return ''.join(["[{}]".format(change_str(i)) for i in str_value.split('.')]) if '.' in str_value else [str_value]
 
 def parse_function(function, data):
     '''
@@ -120,5 +124,3 @@ def manipulate_database(host, user, password, sql):
         db.rollback()
     db.close()
 
-if __name__ == '__main__':
-    a= extract_functions('${getDataSetListId(1,$2)}')
