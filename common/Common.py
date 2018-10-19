@@ -49,6 +49,7 @@ def parse_string_value(str_value):
     :param str_value: str, 如：3, [1,2,3], {a:1, b:2}
     :return: str==>int, str==>list, str==> dict
     '''
+    if str_value is None:return None
     try:
         return ast.literal_eval(str_value)
     except ValueError:
