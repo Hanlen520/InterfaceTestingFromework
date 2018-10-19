@@ -11,6 +11,9 @@ from BeautifulReport import BeautifulReport
 
 report_path = os.path.abspath('..') + '\\report'
 
+class CaseVariable:
+	pass
+
 def test_generator(case_data, isSetupOrCase='case'):
 	def test(self):
 		if isSetupOrCase == 'setup' or isSetupOrCase == 'teardown':
@@ -51,16 +54,16 @@ def test_generator(case_data, isSetupOrCase='case'):
 						k = [parse_string_value(x) for x in k]
 						# 执行函数
 						if '${' in v:
-							v = extract_functions(v)
+							new_v = parse_string_value(extract_functions(v))
 							self.assertIsNotNone(v)
 						# 寻找变量
 						elif '$' in v:
-							v = getattr(self, v.replace('$', ''), None)
+							new_v = parse_string_value(getattr(CaseVariable, v.replace('$', ''), None))
 							self.assertIsNotNone(v, '未定义变量{}'.format(v))
 						# 字符串
 						else:
-							pass
-						change_data(yml_data, v, k)
+							new_v = v
+						change_data(yml_data, new_v, k)
 		# 如果没有API NAME信息失败
 		self.assertIsNotNone(yml_data,'没有读取到API NAME信息')
 		method = case_data['method']
@@ -88,7 +91,7 @@ def test_generator(case_data, isSetupOrCase='case'):
 			resp = [-1]
 			print(method)
 		# status code为200
-		self.assertEqual(resp[0], 200,'status code不为200')
+		self.assertEqual(resp[0], 200, resp)
 		check_point = case_data['Check Point']
 		if check_point:
 			for key, value in check_point.items():
@@ -123,13 +126,13 @@ def test_generator(case_data, isSetupOrCase='case'):
 				if 'request.' in value:
 					if 'json' in value:
 						value = parse_string(value.replace('request.json.', ''))
-						setattr(self, key, str(eval(str(json.loads(request_data)) + str(value))))
+						setattr(CaseVariable, key, str(eval(str(json.loads(request_data)) + str(value))))
 					else:
 						value = parse_string(value.replace('request.data.', ''))
-						setattr(self, key, str(eval(str(request_data) + str(value))))
+						setattr(CaseVariable, key, str(eval(str(request_data) + str(value))))
 				else:
 					value = parse_string(value)
-					setattr(self, key, str(eval(str(resp[1]) + str(value))))
+					setattr(CaseVariable, key, str(eval(str(resp[1]) + str(value))))
 		get_summary(url=url, method=method, resp=resp, isSetupOrCase=isSetupOrCase, headers=headers, request_data=request_data)
 	return test
 
@@ -168,7 +171,7 @@ def run_test():
 		for n, case_data in enumerate(case_datas):
 			test = test_generator(case_data)
 			description = case_data['Description']
-			setattr(TestSequense, 'test_{}'.format(description), test)
+			setattr(TestSequense, 'test_{}_{}'.format(n, description), test)
 		loaded_testcase = loader.loadTestsFromTestCase(TestSequense)
 		loaded_testcases.append(loaded_testcase)
 	test_suite = unittest.TestSuite(loaded_testcases)
@@ -182,12 +185,12 @@ def run_test():
 	# 	description=u'用例执行情况：')
 	# runner.run(test_suite)
 	
-	# runner = unittest.TextTestRunner()
-	# result = runner.run(test_suite)
-	# print(result)
+	runner = unittest.TextTestRunner()
+	result = runner.run(test_suite)
+	print(result)
 	
-	result = BeautifulReport(test_suite)
-	result.report(filename= filename, description ='接口测试', log_path =report_path)
+	# result = BeautifulReport(test_suite)
+	# result.report(filename= filename, description ='接口测试', log_path =report_path)
 
 
 if __name__ == "__main__":
