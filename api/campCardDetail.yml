@@ -1,0 +1,316 @@
+_:
+    method: GET
+    name: /
+    url: http://front.test.rmos.com/
+api_EgScript_CrossOver_getTheme:
+    method: GET
+    name: /api/EgScript/CrossOver/getTheme
+    params:
+        callback: callback_1540180554017
+        token: ab48929c3934816f6b4247927ca8609f9b712790
+    url: http://front.test.rmos.com/api/EgScript/CrossOver/getTheme
+api_Page_Menu_Menu_getList:
+    headers:
+        content-type: application/json;charset=UTF-8
+        token: ab48929c3934816f6b4247927ca8609f9b712790
+    json:
+        isAll: 1
+        status: -1
+    method: POST
+    name: /api/Page/Menu/Menu/getList
+    url: http://front.test.rmos.com/api/Page/Menu/Menu/getList
+api_Page_NewCards_Interactive_getChartByCM:
+    headers:
+        content-type: application/json;charset=UTF-8
+        token: ab48929c3934816f6b4247927ca8609f9b712790
+    json:
+        card_id: 5288
+    method: POST
+    name: /api/Page/NewCards/Interactive/getChartByCM
+    url: http://front.test.rmos.com/api/Page/NewCards/Interactive/getChartByCM
+api_Page_Share_Comments_getList:
+    headers:
+        content-type: application/json;charset=UTF-8
+        token: ab48929c3934816f6b4247927ca8609f9b712790
+    json:
+        card_id: 5288
+        type: 1
+    method: POST
+    name: /api/Page/Share/Comments/getList
+    url: http://front.test.rmos.com/api/Page/Share/Comments/getList
+api_Page_Share_Comments_recordTime:
+    headers:
+        content-type: application/json;charset=UTF-8
+        token: ab48929c3934816f6b4247927ca8609f9b712790
+    json:
+        card_id: 5288
+    method: POST
+    name: /api/Page/Share/Comments/recordTime
+    url: http://front.test.rmos.com/api/Page/Share/Comments/recordTime
+api_Page_Share_Share_campSharedUserList:
+    headers:
+        content-type: application/json;charset=UTF-8
+        token: ab48929c3934816f6b4247927ca8609f9b712790
+    json:
+        firsthand_id: 5288
+        type: 1
+    method: POST
+    name: /api/Page/Share/Share/campSharedUserList
+    url: http://front.test.rmos.com/api/Page/Share/Share/campSharedUserList
+api_Power_Power_User_getUnreadNum:
+    data: {}
+    headers:
+        token: ab48929c3934816f6b4247927ca8609f9b712790
+    method: POST
+    name: /api/Power/Power/User/getUnreadNum
+    url: http://front.test.rmos.com/api/Power/Power/User/getUnreadNum
+api_Power_Power_User_getUserConfig:
+    data: {}
+    headers:
+        token: ab48929c3934816f6b4247927ca8609f9b712790
+    method: POST
+    name: /api/Power/Power/User/getUserConfig
+    url: http://front.test.rmos.com/api/Power/Power/User/getUserConfig
+api_Power_Power_User_getUserMenu:
+    data: {}
+    headers:
+        token: ab48929c3934816f6b4247927ca8609f9b712790
+    method: POST
+    name: /api/Power/Power/User/getUserMenu
+    url: http://front.test.rmos.com/api/Power/Power/User/getUserMenu
+api_Power_Power_User_setUserConfig:
+    headers:
+        content-type: application/json;charset=UTF-8
+        token: ab48929c3934816f6b4247927ca8609f9b712790
+    json:
+        campaign_show_type: 0
+    method: POST
+    name: /api/Power/Power/User/setUserConfig
+    url: http://front.test.rmos.com/api/Power/Power/User/setUserConfig
+api_pic_default_avatar.png:
+    method: GET
+    name: /api/pic/default_avatar.png
+    url: http://account.test.com/api/pic/default_avatar.png
+api_pic_logo_5b6cfa4048a98.png:
+    method: GET
+    name: /api/pic/logo/5b6cfa4048a98.png
+    url: http://account.test.com/api/pic/logo/5b6cfa4048a98.png
+api_pic_mylogo_12001499935623.jpg:
+    method: GET
+    name: /api/pic/mylogo/12001499935623.jpg
+    url: http://account.test.com/api/pic/mylogo/12001499935623.jpg
+api_pic_mylogo_127001497408088.jpg:
+    method: GET
+    name: /api/pic/mylogo/127001497408088.jpg
+    url: http://account.test.com/api/pic/mylogo/127001497408088.jpg
+api_pic_mylogo_144001500024216.jpg:
+    method: GET
+    name: /api/pic/mylogo/144001500024216.jpg
+    url: http://account.test.com/api/pic/mylogo/144001500024216.jpg
+api_pic_mylogo_148001500536328.jpg:
+    method: GET
+    name: /api/pic/mylogo/148001500536328.jpg
+    url: http://account.test.com/api/pic/mylogo/148001500536328.jpg
+api_pic_mylogo_153001504753267.jpg:
+    method: GET
+    name: /api/pic/mylogo/153001504753267.jpg
+    url: http://account.test.com/api/pic/mylogo/153001504753267.jpg
+api_pic_mylogo_165001503309259.png:
+    method: GET
+    name: /api/pic/mylogo/165001503309259.png
+    url: http://account.test.com/api/pic/mylogo/165001503309259.png
+api_pic_mylogo_23001521444765.jpg:
+    method: GET
+    name: /api/pic/mylogo/23001521444765.jpg
+    url: http://account.test.com/api/pic/mylogo/23001521444765.jpg
+api_pic_mylogo_3001503655259.jpg:
+    method: GET
+    name: /api/pic/mylogo/3001503655259.jpg
+    url: http://account.test.com/api/pic/mylogo/3001503655259.jpg
+api_pic_mylogo_38001494572235.png:
+    method: GET
+    name: /api/pic/mylogo/38001494572235.png
+    url: http://account.test.com/api/pic/mylogo/38001494572235.png
+api_pic_mylogo_6001533806802.png:
+    method: GET
+    name: /api/pic/mylogo/6001533806802.png
+    url: http://account.test.com/api/pic/mylogo/6001533806802.png
+api_pic_mylogo_7001492744251.jpg:
+    method: GET
+    name: /api/pic/mylogo/7001492744251.jpg
+    url: http://account.test.com/api/pic/mylogo/7001492744251.jpg
+api_pic_mylogo_71001509014064.jpg:
+    method: GET
+    name: /api/pic/mylogo/71001509014064.jpg
+    url: http://account.test.com/api/pic/mylogo/71001509014064.jpg
+api_pic_mylogo_82001499755350.png:
+    method: GET
+    name: /api/pic/mylogo/82001499755350.png
+    url: http://account.test.com/api/pic/mylogo/82001499755350.png
+api_pic_mylogo_9001496300330.jpg:
+    method: GET
+    name: /api/pic/mylogo/9001496300330.jpg
+    url: http://account.test.com/api/pic/mylogo/9001496300330.jpg
+apicm_Page_Campaign_Campaign_getCampaignHeader:
+    data: {}
+    headers:
+        token: ab48929c3934816f6b4247927ca8609f9b712790
+    method: POST
+    name: /apicm/Page/Campaign/Campaign/getCampaignHeader
+    url: http://front.test.rmos.com/apicm/Page/Campaign/Campaign/getCampaignHeader
+apicm_Page_Campaign_Campaign_getDmpList:
+    data: {}
+    headers:
+        token: ab48929c3934816f6b4247927ca8609f9b712790
+    method: POST
+    name: /apicm/Page/Campaign/Campaign/getDmpList
+    url: http://front.test.rmos.com/apicm/Page/Campaign/Campaign/getDmpList
+apicm_Page_Campaign_Campaign_getRmosCampaignInfo:
+    headers:
+        content-type: application/json;charset=UTF-8
+        token: ab48929c3934816f6b4247927ca8609f9b712790
+    json:
+        rmos_campaign_id: 127
+    method: POST
+    name: /apicm/Page/Campaign/Campaign/getRmosCampaignInfo
+    url: http://front.test.rmos.com/apicm/Page/Campaign/Campaign/getRmosCampaignInfo
+apicm_Page_Campaign_Campaign_getRmosCampaignInfoForCard:
+    headers:
+        content-type: application/json;charset=UTF-8
+        token: ab48929c3934816f6b4247927ca8609f9b712790
+    json:
+        rmos_campaign_id:
+        - 127
+    method: POST
+    name: /apicm/Page/Campaign/Campaign/getRmosCampaignInfoForCard
+    url: http://front.test.rmos.com/apicm/Page/Campaign/Campaign/getRmosCampaignInfoForCard
+apicm_Page_Campaign_Campaign_getRmosFilterList:
+    data: {}
+    headers:
+        token: ab48929c3934816f6b4247927ca8609f9b712790
+    method: POST
+    name: /apicm/Page/Campaign/Campaign/getRmosFilterList
+    url: http://front.test.rmos.com/apicm/Page/Campaign/Campaign/getRmosFilterList
+apicm_Page_Campaign_Campaign_getRmosList:
+    headers:
+        content-type: application/json;charset=UTF-8
+        token: ab48929c3934816f6b4247927ca8609f9b712790
+    json:
+        currentPage: 1
+        filter:
+            advertiser: []
+            brand: []
+            delivery_rate:
+            - -1
+            product: []
+            push_rate:
+            - -1
+            status: []
+        isAll: 0
+        orderBy:
+            end_time: 0
+            start_time: 0
+        perPage: 20
+        searchKey: ''
+        searchType: Campaign Name
+    method: POST
+    name: /apicm/Page/Campaign/Campaign/getRmosList
+    url: http://front.test.rmos.com/apicm/Page/Campaign/Campaign/getRmosList
+apicm_Page_Campaign_Campaign_getTestGroupList:
+    data: {}
+    headers:
+        token: ab48929c3934816f6b4247927ca8609f9b712790
+    method: POST
+    name: /apicm/Page/Campaign/Campaign/getTestGroupList
+    url: http://front.test.rmos.com/apicm/Page/Campaign/Campaign/getTestGroupList
+apicm_Page_Campaign_Campaign_getUserAdvertiserList:
+    data: {}
+    headers:
+        token: ab48929c3934816f6b4247927ca8609f9b712790
+    method: POST
+    name: /apicm/Page/Campaign/Campaign/getUserAdvertiserList
+    url: http://front.test.rmos.com/apicm/Page/Campaign/Campaign/getUserAdvertiserList
+apicm_Page_Campaign_Campaign_getUserBrandList:
+    data: {}
+    headers:
+        token: ab48929c3934816f6b4247927ca8609f9b712790
+    method: POST
+    name: /apicm/Page/Campaign/Campaign/getUserBrandList
+    url: http://front.test.rmos.com/apicm/Page/Campaign/Campaign/getUserBrandList
+apicm_Page_Campaign_Campaign_getUserProductList:
+    data: {}
+    headers:
+        token: ab48929c3934816f6b4247927ca8609f9b712790
+    method: POST
+    name: /apicm/Page/Campaign/Campaign/getUserProductList
+    url: http://front.test.rmos.com/apicm/Page/Campaign/Campaign/getUserProductList
+apicm_Page_Campaign_Templet_campCardDetail:
+    headers:
+        content-type: application/json;charset=UTF-8
+        token: ab48929c3934816f6b4247927ca8609f9b712790
+    json:
+        id: 5288
+    method: POST
+    name: /apicm/Page/Campaign/Templet/campCardDetail
+    url: http://front.test.rmos.com/apicm/Page/Campaign/Templet/campCardDetail
+apicm_Page_Campaign_Templet_getCampCardList:
+    headers:
+        content-type: application/json;charset=UTF-8
+        token: ab48929c3934816f6b4247927ca8609f9b712790
+    json:
+        filterKey: 0
+        searchKey: ''
+        sortKey: 1
+    method: POST
+    name: /apicm/Page/Campaign/Templet/getCampCardList
+    url: http://front.test.rmos.com/apicm/Page/Campaign/Templet/getCampCardList
+apicm_TD_Campaign_Campaign_checkTagPermission:
+    headers:
+        content-type: application/json;charset=UTF-8
+        token: ab48929c3934816f6b4247927ca8609f9b712790
+    json:
+        tag: TD/Campaign/Campaign/dsphdt
+    method: POST
+    name: /apicm/TD/Campaign/Campaign/checkTagPermission
+    url: http://front.test.rmos.com/apicm/TD/Campaign/Campaign/checkTagPermission
+apicm_TD_Campaign_Campaign_getUserConfig:
+    headers:
+        content-type: application/json;charset=UTF-8
+        token: ab48929c3934816f6b4247927ca8609f9b712790
+    json:
+        user_config: campainListPage
+    method: POST
+    name: /apicm/TD/Campaign/Campaign/getUserConfig
+    url: http://front.test.rmos.com/apicm/TD/Campaign/Campaign/getUserConfig
+rmos_4360975fb489204628bc1e1a2c18967e.woff:
+    method: GET
+    name: /rmos/4360975fb489204628bc1e1a2c18967e.woff
+    url: http://front.test.rmos.com/rmos/4360975fb489204628bc1e1a2c18967e.woff
+rmos_534f914f2dafc8af82a87af1674a2223.png:
+    method: GET
+    name: /rmos/534f914f2dafc8af82a87af1674a2223.png
+    url: http://front.test.rmos.com/rmos/534f914f2dafc8af82a87af1674a2223.png
+rmos_app.42646c7a192780806405.js:
+    method: GET
+    name: /rmos/app.42646c7a192780806405.js
+    url: http://front.test.rmos.com/rmos/app.42646c7a192780806405.js
+rmos_e22bf303ce3a1ad50702f067ace99cb4.png:
+    method: GET
+    name: /rmos/e22bf303ce3a1ad50702f067ace99cb4.png
+    url: http://front.test.rmos.com/rmos/e22bf303ce3a1ad50702f067ace99cb4.png
+rmos_skyTheme.da3ccedd6bebcb0b309916fa71f0466a.css:
+    method: GET
+    name: /rmos/skyTheme.da3ccedd6bebcb0b309916fa71f0466a.css
+    url: http://front.test.rmos.com/rmos/skyTheme.da3ccedd6bebcb0b309916fa71f0466a.css
+rmos_vendor.9cdccad53dd8e740e091.js:
+    method: GET
+    name: /rmos/vendor.9cdccad53dd8e740e091.js
+    url: http://front.test.rmos.com/rmos/vendor.9cdccad53dd8e740e091.js
+s_opensans_v13_DXI1ORHCpsQm3Vp6mXoaTegdm0LZdjqr5-oayXSOefg.woff2:
+    method: GET
+    name: /s/opensans/v13/DXI1ORHCpsQm3Vp6mXoaTegdm0LZdjqr5-oayXSOefg.woff2
+    url: https://fonts.gstatic.com/s/opensans/v13/DXI1ORHCpsQm3Vp6mXoaTegdm0LZdjqr5-oayXSOefg.woff2
+s_opensans_v13_cJZKeOuBrn4kERxqtaUH3VtXRa8TVwTICgirnJhmVJw.woff2:
+    method: GET
+    name: /s/opensans/v13/cJZKeOuBrn4kERxqtaUH3VtXRa8TVwTICgirnJhmVJw.woff2
+    url: https://fonts.gstatic.com/s/opensans/v13/cJZKeOuBrn4kERxqtaUH3VtXRa8TVwTICgirnJhmVJw.woff2

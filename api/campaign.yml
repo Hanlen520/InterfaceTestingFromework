@@ -1,0 +1,639 @@
+_:
+    method: GET
+    name: /
+    params:
+        token: 0d36bae1f34b42ba3992437ac15ce7edb08c566b
+    url: http://front.test.rmos.com/
+api_EgScript_CrossOver_getTheme:
+    method: GET
+    name: /api/EgScript/CrossOver/getTheme
+    params:
+        callback: callback_1540188558286
+        token: 0d36bae1f34b42ba3992437ac15ce7edb08c566b
+    url: http://front.test.rmos.com/api/EgScript/CrossOver/getTheme
+api_MindShare_BrandReport_getBrandData:
+    headers:
+        content-type: application/json;charset=UTF-8
+        token: 0d36bae1f34b42ba3992437ac15ce7edb08c566b
+    json:
+        brand_id:
+        - -1
+        device: -1
+    method: POST
+    name: /api/MindShare/BrandReport/getBrandData
+    url: http://front.test.rmos.com/api/MindShare/BrandReport/getBrandData
+api_MindShare_BrandReport_getImpRate:
+    headers:
+        content-type: application/json;charset=UTF-8
+        token: 0d36bae1f34b42ba3992437ac15ce7edb08c566b
+    json:
+        brand_id:
+        - -1
+        search_dates: 30
+    method: POST
+    name: /api/MindShare/BrandReport/getImpRate
+    url: http://front.test.rmos.com/api/MindShare/BrandReport/getImpRate
+api_MindShare_BrandReport_getOverallData:
+    headers:
+        content-type: application/json;charset=UTF-8
+        token: 0d36bae1f34b42ba3992437ac15ce7edb08c566b
+    json:
+        brand_id:
+        - -1
+    method: POST
+    name: /api/MindShare/BrandReport/getOverallData
+    url: http://front.test.rmos.com/api/MindShare/BrandReport/getOverallData
+api_MindShare_BrandReport_getPushFrequency:
+    headers:
+        content-type: application/json;charset=UTF-8
+        token: 0d36bae1f34b42ba3992437ac15ce7edb08c566b
+    json:
+        brand_id:
+        - -1
+    method: POST
+    name: /api/MindShare/BrandReport/getPushFrequency
+    url: http://front.test.rmos.com/api/MindShare/BrandReport/getPushFrequency
+api_Page_Cards_Cards_getChart:
+    headers:
+        content-type: application/json;charset=UTF-8
+        token: 0d36bae1f34b42ba3992437ac15ce7edb08c566b
+    json:
+        card_id: 5985
+    method: POST
+    name: /api/Page/Cards/Cards/getChart
+    url: http://front.test.rmos.com/api/Page/Cards/Cards/getChart
+api_Page_Cards_Cards_getList:
+    headers:
+        content-type: application/json;charset=UTF-8
+        token: 0d36bae1f34b42ba3992437ac15ce7edb08c566b
+    json:
+        menu_id: 2070
+    method: POST
+    name: /api/Page/Cards/Cards/getList
+    url: http://front.test.rmos.com/api/Page/Cards/Cards/getList
+api_Page_Menu_Menu_getList:
+    headers:
+        content-type: application/json;charset=UTF-8
+        token: 0d36bae1f34b42ba3992437ac15ce7edb08c566b
+    json:
+        isAll: 1
+        status: -1
+    method: POST
+    name: /api/Page/Menu/Menu/getList
+    url: http://front.test.rmos.com/api/Page/Menu/Menu/getList
+api_Power_Power_User_getLoginInfo:
+    data: {}
+    headers:
+        token: 0d36bae1f34b42ba3992437ac15ce7edb08c566b
+    method: POST
+    name: /api/Power/Power/User/getLoginInfo
+    url: http://front.test.rmos.com/api/Power/Power/User/getLoginInfo
+api_Power_Power_User_getUnreadNum:
+    data: {}
+    headers:
+        token: 0d36bae1f34b42ba3992437ac15ce7edb08c566b
+    method: POST
+    name: /api/Power/Power/User/getUnreadNum
+    url: http://front.test.rmos.com/api/Power/Power/User/getUnreadNum
+api_Power_Power_User_getUserConfig:
+    data: {}
+    headers:
+        token: 0d36bae1f34b42ba3992437ac15ce7edb08c566b
+    method: POST
+    name: /api/Power/Power/User/getUserConfig
+    url: http://front.test.rmos.com/api/Power/Power/User/getUserConfig
+api_Power_Power_User_getUserMenu:
+    data: {}
+    headers:
+        token: 0d36bae1f34b42ba3992437ac15ce7edb08c566b
+    method: POST
+    name: /api/Power/Power/User/getUserMenu
+    url: http://front.test.rmos.com/api/Power/Power/User/getUserMenu
+api_pic_default_avatar.png:
+    method: GET
+    name: /api/pic/default_avatar.png
+    url: http://account.test.com/api/pic/default_avatar.png
+api_pic_logo_5b6cfa4048a98.png:
+    method: GET
+    name: /api/pic/logo/5b6cfa4048a98.png
+    url: http://account.test.com/api/pic/logo/5b6cfa4048a98.png
+apicm_Page_Campaign_Campaign_getCampaignHeader:
+    data: {}
+    headers:
+        token: 0d36bae1f34b42ba3992437ac15ce7edb08c566b
+    method: POST
+    name: /apicm/Page/Campaign/Campaign/getCampaignHeader
+    url: http://front.test.rmos.com/apicm/Page/Campaign/Campaign/getCampaignHeader
+apicm_Page_Campaign_Campaign_getCampaignReport:
+    headers:
+        content-type: application/json;charset=UTF-8
+        token: 0d36bae1f34b42ba3992437ac15ce7edb08c566b
+    json:
+        campaign_id: 608
+        market_device: -1
+        media_device: -1
+    method: POST
+    name: /apicm/Page/Campaign/Campaign/getCampaignReport
+    url: http://front.test.rmos.com/apicm/Page/Campaign/Campaign/getCampaignReport
+apicm_Page_Campaign_Campaign_getDmpList:
+    data: {}
+    headers:
+        token: 0d36bae1f34b42ba3992437ac15ce7edb08c566b
+    method: POST
+    name: /apicm/Page/Campaign/Campaign/getDmpList
+    url: http://front.test.rmos.com/apicm/Page/Campaign/Campaign/getDmpList
+apicm_Page_Campaign_Campaign_getMzTaByCamp:
+    headers:
+        content-type: application/json;charset=UTF-8
+        token: 0d36bae1f34b42ba3992437ac15ce7edb08c566b
+    json:
+        campaign_id: 608
+    method: POST
+    name: /apicm/Page/Campaign/Campaign/getMzTaByCamp
+    url: http://front.test.rmos.com/apicm/Page/Campaign/Campaign/getMzTaByCamp
+apicm_Page_Campaign_Campaign_getRmosCampaignDetail:
+    headers:
+        content-type: application/json;charset=UTF-8
+        token: 0d36bae1f34b42ba3992437ac15ce7edb08c566b
+    json:
+        rmos_campaign_id: 608
+    method: POST
+    name: /apicm/Page/Campaign/Campaign/getRmosCampaignDetail
+    url: http://front.test.rmos.com/apicm/Page/Campaign/Campaign/getRmosCampaignDetail
+apicm_Page_Campaign_Campaign_getRmosCampaignInfo:
+    headers:
+        content-type: application/json;charset=UTF-8
+        token: 0d36bae1f34b42ba3992437ac15ce7edb08c566b
+    json:
+        rmos_campaign_id: 608
+    method: POST
+    name: /apicm/Page/Campaign/Campaign/getRmosCampaignInfo
+    url: http://front.test.rmos.com/apicm/Page/Campaign/Campaign/getRmosCampaignInfo
+apicm_Page_Campaign_Campaign_getRmosFilterList:
+    data: {}
+    headers:
+        token: 0d36bae1f34b42ba3992437ac15ce7edb08c566b
+    method: POST
+    name: /apicm/Page/Campaign/Campaign/getRmosFilterList
+    url: http://front.test.rmos.com/apicm/Page/Campaign/Campaign/getRmosFilterList
+apicm_Page_Campaign_Campaign_getRmosList:
+    headers:
+        content-type: application/json;charset=UTF-8
+        token: 0d36bae1f34b42ba3992437ac15ce7edb08c566b
+    json:
+        currentPage: 1
+        filter:
+            advertiser: []
+            brand: []
+            delivery_rate:
+            - -1
+            product: []
+            push_rate:
+            - -1
+            status: []
+        isAll: 0
+        orderBy:
+            end_time: 0
+            start_time: 0
+        perPage: 20
+        searchKey: ''
+        searchType: Campaign Name
+    method: POST
+    name: /apicm/Page/Campaign/Campaign/getRmosList
+    url: http://front.test.rmos.com/apicm/Page/Campaign/Campaign/getRmosList
+apicm_Page_Campaign_Campaign_getTestGroupList:
+    data: {}
+    headers:
+        token: 0d36bae1f34b42ba3992437ac15ce7edb08c566b
+    method: POST
+    name: /apicm/Page/Campaign/Campaign/getTestGroupList
+    url: http://front.test.rmos.com/apicm/Page/Campaign/Campaign/getTestGroupList
+apicm_Page_Campaign_Campaign_getUserAdvertiserList:
+    data: {}
+    headers:
+        token: 0d36bae1f34b42ba3992437ac15ce7edb08c566b
+    method: POST
+    name: /apicm/Page/Campaign/Campaign/getUserAdvertiserList
+    url: http://front.test.rmos.com/apicm/Page/Campaign/Campaign/getUserAdvertiserList
+apicm_Page_Campaign_Campaign_getUserBrandList:
+    data: {}
+    headers:
+        token: 0d36bae1f34b42ba3992437ac15ce7edb08c566b
+    method: POST
+    name: /apicm/Page/Campaign/Campaign/getUserBrandList
+    url: http://front.test.rmos.com/apicm/Page/Campaign/Campaign/getUserBrandList
+apicm_Page_Campaign_Campaign_getUserProductList:
+    data: {}
+    headers:
+        token: 0d36bae1f34b42ba3992437ac15ce7edb08c566b
+    method: POST
+    name: /apicm/Page/Campaign/Campaign/getUserProductList
+    url: http://front.test.rmos.com/apicm/Page/Campaign/Campaign/getUserProductList
+apicm_Page_Campaign_Campaign_saveRmosCampaign:
+    headers:
+        content-type: application/json;charset=UTF-8
+        token: 0d36bae1f34b42ba3992437ac15ce7edb08c566b
+    json:
+        ab_testing: 0
+        advertiser_id: 2
+        advertising_format:
+        - 2
+        advertising_types:
+        - 1
+        anti_fraud: ''
+        brand_id: 11
+        c_cid: ''
+        c_cn: ''
+        cost: ''
+        cpola_target:
+            key: None
+            value: ''
+        creative_note_information: ''
+        creative_tracking_code:
+        -   name: 正确文件.xlsx
+            size: 11K
+            url: http://front.test.rmos.com/api/material/excel/343530/track/正确文件.xlsx
+        device:
+        - 1
+        dmp_info: []
+        dmp_info_ids: []
+        dmp_ta_description: ''
+        dmp_ta_tag:
+            miaozhen: []
+            talkingData: ''
+            tx: ''
+        dynamic_content: 0
+        end_date: 1540137600
+        frequency_after: 1
+        frequency_control: 1
+        id: 608
+        incre_sales: ''
+        kpi: ''
+        material:
+        -   material_address: '1'
+            password: '1'
+        name: sa
+        other: ''
+        pay_model: CPM
+        product_id: 12
+        segment_specific: 0
+        sequential_ads:
+            choice: Specific sequent
+            enable: 0
+        sequential_rule_description: ''
+        spot_plan_excel:
+        -   name: 正确文件.xlsx
+            size: 11K
+            url: http://front.test.rmos.com/api/material/excel/343530/plan/正确文件.xlsx
+        start_date: 1540137600
+        ta_ratio: ''
+        test_group_id: 4
+        test_group_name: test001
+        viewable_cpm_target: ''
+    method: POST
+    name: /apicm/Page/Campaign/Campaign/saveRmosCampaign
+    url: http://front.test.rmos.com/apicm/Page/Campaign/Campaign/saveRmosCampaign
+apicm_Page_Campaign_Campaign_uploadCreativeTrackingCodeExcel:
+    data: "------WebKitFormBoundarysx11z7LeOPhc6jvH\r\nContent-Disposition: form-data;\
+        \ name=\"file\"; filename=\"正确文件.xlsx\"\r\nContent-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet\r\
+        \n\r\n\r\n------WebKitFormBoundarysx11z7LeOPhc6jvH--\r\n"
+    headers:
+        content-type: multipart/form-data; boundary=----WebKitFormBoundarysx11z7LeOPhc6jvH
+        token: 0d36bae1f34b42ba3992437ac15ce7edb08c566b
+    method: POST
+    name: /apicm/Page/Campaign/Campaign/uploadCreativeTrackingCodeExcel
+    url: http://front.test.rmos.com/apicm/Page/Campaign/Campaign/uploadCreativeTrackingCodeExcel
+apicm_Page_Campaign_Campaign_uploadSpotPlanExcel:
+    data: "------WebKitFormBoundaryikRztcbV0MKR7yOr\r\nContent-Disposition: form-data;\
+        \ name=\"file\"; filename=\"正确文件.xlsx\"\r\nContent-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet\r\
+        \n\r\n\r\n------WebKitFormBoundaryikRztcbV0MKR7yOr--\r\n"
+    headers:
+        content-type: multipart/form-data; boundary=----WebKitFormBoundaryikRztcbV0MKR7yOr
+        token: 0d36bae1f34b42ba3992437ac15ce7edb08c566b
+    method: POST
+    name: /apicm/Page/Campaign/Campaign/uploadSpotPlanExcel
+    url: http://front.test.rmos.com/apicm/Page/Campaign/Campaign/uploadSpotPlanExcel
+apicm_Page_Campaign_Templet_getCampaignPage:
+    headers:
+        content-type: application/json;charset=UTF-8
+        token: 0d36bae1f34b42ba3992437ac15ce7edb08c566b
+    json:
+        campaign_id: 372
+        campaign_name: Y2018_Loreal_YSL_Mon Paris_PDB_0201_0331
+    method: POST
+    name: /apicm/Page/Campaign/Templet/getCampaignPage
+    url: http://front.test.rmos.com/apicm/Page/Campaign/Templet/getCampaignPage
+apicm_TD_Campaign_Campaign_checkTagPermission:
+    headers:
+        content-type: application/json;charset=UTF-8
+        token: 0d36bae1f34b42ba3992437ac15ce7edb08c566b
+    json:
+        tag: TD/Campaign/Campaign/dsphdt
+    method: POST
+    name: /apicm/TD/Campaign/Campaign/checkTagPermission
+    url: http://front.test.rmos.com/apicm/TD/Campaign/Campaign/checkTagPermission
+apicm_TD_Campaign_Campaign_getUserConfig:
+    headers:
+        content-type: application/json;charset=UTF-8
+        token: 0d36bae1f34b42ba3992437ac15ce7edb08c566b
+    json:
+        user_config: campainListPage
+    method: POST
+    name: /apicm/TD/Campaign/Campaign/getUserConfig
+    url: http://front.test.rmos.com/apicm/TD/Campaign/Campaign/getUserConfig
+rmos_3e24c3f216fe6161a128658be9bd0f22.png:
+    method: GET
+    name: /rmos/3e24c3f216fe6161a128658be9bd0f22.png
+    url: http://front.test.rmos.com/rmos/3e24c3f216fe6161a128658be9bd0f22.png
+rmos_4213324fe48e59b89a117f5355b25d6e.png:
+    method: GET
+    name: /rmos/4213324fe48e59b89a117f5355b25d6e.png
+    url: http://front.test.rmos.com/rmos/4213324fe48e59b89a117f5355b25d6e.png
+rmos_4360975fb489204628bc1e1a2c18967e.woff:
+    method: GET
+    name: /rmos/4360975fb489204628bc1e1a2c18967e.woff
+    url: http://front.test.rmos.com/rmos/4360975fb489204628bc1e1a2c18967e.woff
+rmos_534f914f2dafc8af82a87af1674a2223.png:
+    method: GET
+    name: /rmos/534f914f2dafc8af82a87af1674a2223.png
+    url: http://front.test.rmos.com/rmos/534f914f2dafc8af82a87af1674a2223.png
+rmos_app.c0cb4c16c473ceac00f9.js:
+    method: GET
+    name: /rmos/app.c0cb4c16c473ceac00f9.js
+    url: http://front.test.rmos.com/rmos/app.c0cb4c16c473ceac00f9.js
+rmos_app.ed556cea05b7d0cbd5fc29e8363a8de0.css:
+    headers:
+        If-Modified-Since: Fri, 19 Oct 2018 06:40:25 GMT
+        If-None-Match: '"5bc97c59-c7610"'
+    method: GET
+    name: /rmos/app.ed556cea05b7d0cbd5fc29e8363a8de0.css
+    url: http://front.test.rmos.com/rmos/app.ed556cea05b7d0cbd5fc29e8363a8de0.css
+rmos_c7c276fb9c1367665c4dd09f59dd6a5f.png:
+    method: GET
+    name: /rmos/c7c276fb9c1367665c4dd09f59dd6a5f.png
+    url: http://front.test.rmos.com/rmos/c7c276fb9c1367665c4dd09f59dd6a5f.png
+rmos_e22bf303ce3a1ad50702f067ace99cb4.png:
+    method: GET
+    name: /rmos/e22bf303ce3a1ad50702f067ace99cb4.png
+    url: http://front.test.rmos.com/rmos/e22bf303ce3a1ad50702f067ace99cb4.png
+rmos_skyTheme.da3ccedd6bebcb0b309916fa71f0466a.css:
+    method: GET
+    name: /rmos/skyTheme.da3ccedd6bebcb0b309916fa71f0466a.css
+    url: http://front.test.rmos.com/rmos/skyTheme.da3ccedd6bebcb0b309916fa71f0466a.css
+rmos_vendor.f1bf7427376a913bc225.js:
+    headers:
+        If-Modified-Since: Fri, 19 Oct 2018 06:40:25 GMT
+        If-None-Match: '"5bc97c59-101c61"'
+    method: GET
+    name: /rmos/vendor.f1bf7427376a913bc225.js
+    url: http://front.test.rmos.com/rmos/vendor.f1bf7427376a913bc225.js
+s_opensans_v13_DXI1ORHCpsQm3Vp6mXoaTegdm0LZdjqr5-oayXSOefg.woff2:
+    method: GET
+    name: /s/opensans/v13/DXI1ORHCpsQm3Vp6mXoaTegdm0LZdjqr5-oayXSOefg.woff2
+    url: https://fonts.gstatic.com/s/opensans/v13/DXI1ORHCpsQm3Vp6mXoaTegdm0LZdjqr5-oayXSOefg.woff2
+s_opensans_v13_cJZKeOuBrn4kERxqtaUH3VtXRa8TVwTICgirnJhmVJw.woff2:
+    method: GET
+    name: /s/opensans/v13/cJZKeOuBrn4kERxqtaUH3VtXRa8TVwTICgirnJhmVJw.woff2
+    url: https://fonts.gstatic.com/s/opensans/v13/cJZKeOuBrn4kERxqtaUH3VtXRa8TVwTICgirnJhmVJw.woff2
+api_Power_Power_User_getUserConfig:
+    data: {}
+    headers:
+        token: 0366883f4816ec850b386ffeef01cbad7fe36e7d
+    method: POST
+    name: /api/Power/Power/User/getUserConfig
+    url: http://front.test.rmos.com/api/Power/Power/User/getUserConfig
+apicm_Page_Campaign_Campaign_deleteRmosCampaign:
+    headers:
+        content-type: application/json;charset=UTF-8
+        token: 0366883f4816ec850b386ffeef01cbad7fe36e7d
+    json:
+        rmos_campaign_id: 596
+    method: POST
+    name: /apicm/Page/Campaign/Campaign/deleteRmosCampaign
+    url: http://front.test.rmos.com/apicm/Page/Campaign/Campaign/deleteRmosCampaign
+apicm_Page_Campaign_Campaign_getCampaignHeader:
+    data: {}
+    headers:
+        token: 0366883f4816ec850b386ffeef01cbad7fe36e7d
+    method: POST
+    name: /apicm/Page/Campaign/Campaign/getCampaignHeader
+    url: http://front.test.rmos.com/apicm/Page/Campaign/Campaign/getCampaignHeader
+apicm_Page_Campaign_Campaign_getDmpList:
+    data: {}
+    headers:
+        token: 0366883f4816ec850b386ffeef01cbad7fe36e7d
+    method: POST
+    name: /apicm/Page/Campaign/Campaign/getDmpList
+    url: http://front.test.rmos.com/apicm/Page/Campaign/Campaign/getDmpList
+apicm_Page_Campaign_Campaign_getRmosCampaignInfo:
+    headers:
+        content-type: application/json;charset=UTF-8
+        token: 0366883f4816ec850b386ffeef01cbad7fe36e7d
+    json:
+        rmos_campaign_id: 596
+    method: POST
+    name: /apicm/Page/Campaign/Campaign/getRmosCampaignInfo
+    url: http://front.test.rmos.com/apicm/Page/Campaign/Campaign/getRmosCampaignInfo
+apicm_Page_Campaign_Campaign_getRmosFilterList:
+    data: {}
+    headers:
+        token: 0366883f4816ec850b386ffeef01cbad7fe36e7d
+    method: POST
+    name: /apicm/Page/Campaign/Campaign/getRmosFilterList
+    url: http://front.test.rmos.com/apicm/Page/Campaign/Campaign/getRmosFilterList
+apicm_Page_Campaign_Campaign_getRmosList:
+    headers:
+        content-type: application/json;charset=UTF-8
+        token: 0366883f4816ec850b386ffeef01cbad7fe36e7d
+    json:
+        currentPage: 1
+        filter:
+            advertiser: []
+            brand: []
+            delivery_rate:
+            - -1
+            product: []
+            push_rate:
+            - -1
+            status: []
+        isAll: 0
+        orderBy:
+            end_time: 0
+            start_time: 0
+        perPage: 20
+        searchKey: ''
+        searchType: Campaign Name
+    method: POST
+    name: /apicm/Page/Campaign/Campaign/getRmosList
+    url: http://front.test.rmos.com/apicm/Page/Campaign/Campaign/getRmosList
+apicm_Page_Campaign_Campaign_getTestGroupList:
+    data: {}
+    headers:
+        token: 0366883f4816ec850b386ffeef01cbad7fe36e7d
+    method: POST
+    name: /apicm/Page/Campaign/Campaign/getTestGroupList
+    url: http://front.test.rmos.com/apicm/Page/Campaign/Campaign/getTestGroupList
+apicm_Page_Campaign_Campaign_getUserAdvertiserList:
+    data: {}
+    headers:
+        token: 0366883f4816ec850b386ffeef01cbad7fe36e7d
+    method: POST
+    name: /apicm/Page/Campaign/Campaign/getUserAdvertiserList
+    url: http://front.test.rmos.com/apicm/Page/Campaign/Campaign/getUserAdvertiserList
+apicm_Page_Campaign_Campaign_getUserBrandList:
+    data: {}
+    headers:
+        token: 0366883f4816ec850b386ffeef01cbad7fe36e7d
+    method: POST
+    name: /apicm/Page/Campaign/Campaign/getUserBrandList
+    url: http://front.test.rmos.com/apicm/Page/Campaign/Campaign/getUserBrandList
+apicm_Page_Campaign_Campaign_getUserProductList:
+    data: {}
+    headers:
+        token: 0366883f4816ec850b386ffeef01cbad7fe36e7d
+    method: POST
+    name: /apicm/Page/Campaign/Campaign/getUserProductList
+    url: http://front.test.rmos.com/apicm/Page/Campaign/Campaign/getUserProductList
+apicm_Page_Campaign_Campaign_saveRmosCampaign:
+    headers:
+        content-type: application/json;charset=UTF-8
+        token: 0366883f4816ec850b386ffeef01cbad7fe36e7d
+    json:
+        ab_testing: 0
+        advertiser_id: 2
+        advertising_format:
+        - 1
+        advertising_types: []
+        anti_fraud: ''
+        bind_list: []
+        brand_id: 11
+        c_cid: ''
+        c_cn: ''
+        cost: ''
+        cpola_target:
+            key: None
+            value: ''
+        creative_note_information: ''
+        creative_tracking_code:
+        -   name: 正确文件.xlsx
+            size: 11K
+            url: http://front.test.rmos.com/api/material/excel/343530/track/正确文件.xlsx
+        device:
+        - 1
+        dmp_info: []
+        dmp_info_ids: []
+        dmp_module_id: ''
+        dmp_module_name: ''
+        dmp_ta_description: ''
+        dmp_ta_tag:
+            miaozhen: []
+            talkingData: ''
+            tx: ''
+        dmp_tag_combination: ''
+        dynamic_content: 0
+        end_date: 1540137600
+        frequency_after: 1
+        frequency_control: 2
+        incre_sales: ''
+        kpi: ''
+        material:
+        -   material_address: q
+            password: '1'
+        name: aa
+        other: ''
+        pay_model: CPM
+        product_id: 12
+        pub_market_combination: ''
+        pub_module_id: ''
+        pub_module_name: ''
+        segment_specific: 0
+        sequential_ads:
+            choice: Specific sequent
+            enable: 0
+        sequential_rule_description: ''
+        spot_plan_excel:
+        -   name: 正确文件.xlsx
+            size: 11K
+            url: http://front.test.rmos.com/api/material/excel/343530/plan/正确文件.xlsx
+        start_date: 1540137600
+        ta_ratio: ''
+        test_group_id: 4
+        test_group_name: test001
+        viewable_cpm_target: ''
+    method: POST
+    name: /apicm/Page/Campaign/Campaign/saveRmosCampaign
+    url: http://front.test.rmos.com/apicm/Page/Campaign/Campaign/saveRmosCampaign
+apicm_Page_Campaign_Campaign_uploadCreativeTrackingCodeExcel:
+    data: "------WebKitFormBoundary2sQNEKVkpwZK2InZ\r\nContent-Disposition: form-data;\
+        \ name=\"file\"; filename=\"正确文件.xlsx\"\r\nContent-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet\r\
+        \n\r\n\r\n------WebKitFormBoundary2sQNEKVkpwZK2InZ--\r\n"
+    headers:
+        content-type: multipart/form-data; boundary=----WebKitFormBoundary2sQNEKVkpwZK2InZ
+        token: 0366883f4816ec850b386ffeef01cbad7fe36e7d
+    method: POST
+    name: /apicm/Page/Campaign/Campaign/uploadCreativeTrackingCodeExcel
+    url: http://front.test.rmos.com/apicm/Page/Campaign/Campaign/uploadCreativeTrackingCodeExcel
+apicm_Page_Campaign_Campaign_uploadSpotPlanExcel:
+    data: "------WebKitFormBoundaryrllJglLnluBep99C\r\nContent-Disposition: form-data;\
+        \ name=\"file\"; filename=\"正确文件.xlsx\"\r\nContent-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet\r\
+        \n\r\n\r\n------WebKitFormBoundaryrllJglLnluBep99C--\r\n"
+    headers:
+        content-type: multipart/form-data; boundary=----WebKitFormBoundaryrllJglLnluBep99C
+        token: 0366883f4816ec850b386ffeef01cbad7fe36e7d
+    method: POST
+    name: /apicm/Page/Campaign/Campaign/uploadSpotPlanExcel
+    url: http://front.test.rmos.com/apicm/Page/Campaign/Campaign/uploadSpotPlanExcel
+apicm_Page_Campaign_Templet_getCampaignPage:
+    headers:
+        content-type: application/json;charset=UTF-8
+        token: afdb16c2480bfefbd9a9e427acd96bb5974c2de5
+    json:
+        campaign_id: 593
+        campaign_name: B
+    method: POST
+    name: /apicm/Page/Campaign/Templet/getCampaignPage
+    url: http://front.test.rmos.com/apicm/Page/Campaign/Templet/getCampaignPage
+apicm_Page_Campaign_Campaign_getAdjustment:
+    headers:
+        content-type: application/json;charset=UTF-8
+        token: db5e43a76d515803ca8982117a78a0b68399299b
+    json:
+        rmos_campaign_id:
+        - 587
+    method: POST
+    name: /apicm/Page/Campaign/Campaign/getAdjustment
+    url: http://front.test.rmos.com/apicm/Page/Campaign/Campaign/getAdjustment
+apicm_Page_Campaign_Campaign_getCampaignName:
+    headers:
+        content-type: application/json;charset=UTF-8
+        token: db5e43a76d515803ca8982117a78a0b68399299b
+    json:
+        rmos_campaign_id: 587
+    method: POST
+    name: /apicm/Page/Campaign/Campaign/getCampaignName
+    url: http://front.test.rmos.com/apicm/Page/Campaign/Campaign/getCampaignName
+apicm_Page_Campaign_Campaign_getRmosList:
+    headers:
+        content-type: application/json;charset=UTF-8
+        token: db5e43a76d515803ca8982117a78a0b68399299b
+    json:
+        currentPage: 1
+        filter:
+            advertiser: []
+            brand: []
+            delivery_rate:
+            - -1
+            product: []
+            push_rate:
+            - -1
+            status: []
+        isAll: 0
+        orderBy:
+            end_time: 0
+            start_time: 0
+        perPage: 20
+        searchKey: ''
+        searchType: Campaign Name
+    method: POST
+    name: /apicm/Page/Campaign/Campaign/getRmosList
+    url: http://front.test.rmos.com/apicm/Page/Campaign/Campaign/getRmosList

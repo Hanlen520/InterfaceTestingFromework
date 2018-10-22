@@ -1,0 +1,192 @@
+_:
+    method: GET
+    name: /
+    url: http://front.test.rmos.com/
+api_EgScript_CrossOver_getTheme:
+    method: GET
+    name: /api/EgScript/CrossOver/getTheme
+    params:
+        callback: callback_1539939772599
+        token: b3406a5811a9764b5b27464ed7135abafea9b344
+    url: http://front.test.rmos.com/api/EgScript/CrossOver/getTheme
+api_Page_Menu_Menu_getList:
+    headers:
+        content-type: application/json;charset=UTF-8
+        token: b3406a5811a9764b5b27464ed7135abafea9b344
+    json:
+        isAll: 1
+        status: -1
+    method: POST
+    name: /api/Page/Menu/Menu/getList
+    url: http://front.test.rmos.com/api/Page/Menu/Menu/getList
+api_Power_Power_User_getUnreadNum:
+    data: {}
+    headers:
+        token: b3406a5811a9764b5b27464ed7135abafea9b344
+    method: POST
+    name: /api/Power/Power/User/getUnreadNum
+    url: http://front.test.rmos.com/api/Power/Power/User/getUnreadNum
+api_Power_Power_User_getUserConfig:
+    data: {}
+    headers:
+        token: b3406a5811a9764b5b27464ed7135abafea9b344
+    method: POST
+    name: /api/Power/Power/User/getUserConfig
+    url: http://front.test.rmos.com/api/Power/Power/User/getUserConfig
+api_Power_Power_User_getUserMenu:
+    data: {}
+    headers:
+        token: b3406a5811a9764b5b27464ed7135abafea9b344
+    method: POST
+    name: /api/Power/Power/User/getUserMenu
+    url: http://front.test.rmos.com/api/Power/Power/User/getUserMenu
+api_pic_default_avatar.png:
+    method: GET
+    name: /api/pic/default_avatar.png
+    url: http://account.test.com/api/pic/default_avatar.png
+api_pic_logo_5b6cfa4048a98.png:
+    method: GET
+    name: /api/pic/logo/5b6cfa4048a98.png
+    url: http://account.test.com/api/pic/logo/5b6cfa4048a98.png
+apicm_Page_Campaign_Campaign_getCampaignHeader:
+    data: {}
+    headers:
+        token: b3406a5811a9764b5b27464ed7135abafea9b344
+    method: POST
+    name: /apicm/Page/Campaign/Campaign/getCampaignHeader
+    url: http://front.test.rmos.com/apicm/Page/Campaign/Campaign/getCampaignHeader
+apicm_Page_Campaign_Campaign_getRmosFilterList:
+    data: {}
+    headers:
+        token: b3406a5811a9764b5b27464ed7135abafea9b344
+    method: POST
+    name: /apicm/Page/Campaign/Campaign/getRmosFilterList
+    url: http://front.test.rmos.com/apicm/Page/Campaign/Campaign/getRmosFilterList
+apicm_Page_Campaign_Campaign_getRmosList:
+    headers:
+        content-type: application/json;charset=UTF-8
+        token: b3406a5811a9764b5b27464ed7135abafea9b344
+    json:
+        currentPage: 1
+        filter:
+            advertiser: []
+            brand: []
+            delivery_rate:
+            - -1
+            product: []
+            push_rate:
+            - -1
+            status: []
+        isAll: 0
+        orderBy:
+            end_time: 0
+            start_time: 0
+        perPage: 20
+        searchKey: ''
+        searchType: Campaign Name
+    method: POST
+    name: /apicm/Page/Campaign/Campaign/getRmosList
+    url: http://front.test.rmos.com/apicm/Page/Campaign/Campaign/getRmosList
+apicm_Page_Campaign_Templet_getTempletPreview:
+    headers:
+        content-type: application/json;charset=UTF-8
+        token: b3406a5811a9764b5b27464ed7135abafea9b344
+    json:
+        preview_id: 218
+    method: POST
+    name: /apicm/Page/Campaign/Templet/getTempletPreview
+    url: http://front.test.rmos.com/apicm/Page/Campaign/Templet/getTempletPreview
+apicm_Page_Campaign_Templet_getTempletPreviewList:
+    headers:
+        content-type: application/json;charset=UTF-8
+        token: b3406a5811a9764b5b27464ed7135abafea9b344
+    json:
+        templet_id: 36
+    method: POST
+    name: /apicm/Page/Campaign/Templet/getTempletPreviewList
+    url: http://front.test.rmos.com/apicm/Page/Campaign/Templet/getTempletPreviewList
+apicm_Page_Campaign_Templet_getTemplets:
+    headers:
+        content-type: application/json;charset=UTF-8
+        token: b3406a5811a9764b5b27464ed7135abafea9b344
+    json:
+        search: t
+    method: POST
+    name: /apicm/Page/Campaign/Templet/getTemplets
+    url: http://front.test.rmos.com/apicm/Page/Campaign/Templet/getTemplets
+apicm_TD_Campaign_Campaign_checkTagPermission:
+    headers:
+        content-type: application/json;charset=UTF-8
+        token: b3406a5811a9764b5b27464ed7135abafea9b344
+    json:
+        tag: TD/Campaign/Campaign/dsphdt
+    method: POST
+    name: /apicm/TD/Campaign/Campaign/checkTagPermission
+    url: http://front.test.rmos.com/apicm/TD/Campaign/Campaign/checkTagPermission
+apicm_TD_Campaign_Campaign_getUserConfig:
+    headers:
+        content-type: application/json;charset=UTF-8
+        token: b3406a5811a9764b5b27464ed7135abafea9b344
+    json:
+        user_config: campainListPage
+    method: POST
+    name: /apicm/TD/Campaign/Campaign/getUserConfig
+    url: http://front.test.rmos.com/apicm/TD/Campaign/Campaign/getUserConfig
+rmos_3e24c3f216fe6161a128658be9bd0f22.png:
+    method: GET
+    name: /rmos/3e24c3f216fe6161a128658be9bd0f22.png
+    url: http://front.test.rmos.com/rmos/3e24c3f216fe6161a128658be9bd0f22.png
+rmos_4213324fe48e59b89a117f5355b25d6e.png:
+    method: GET
+    name: /rmos/4213324fe48e59b89a117f5355b25d6e.png
+    url: http://front.test.rmos.com/rmos/4213324fe48e59b89a117f5355b25d6e.png
+rmos_4360975fb489204628bc1e1a2c18967e.woff:
+    method: GET
+    name: /rmos/4360975fb489204628bc1e1a2c18967e.woff
+    url: http://front.test.rmos.com/rmos/4360975fb489204628bc1e1a2c18967e.woff
+rmos_app.430dc9ef825815eee84d.js:
+    headers:
+        If-Modified-Since: Fri, 19 Oct 2018 06:40:25 GMT
+        If-None-Match: '"5bc97c59-3f74b3"'
+    method: GET
+    name: /rmos/app.430dc9ef825815eee84d.js
+    url: http://front.test.rmos.com/rmos/app.430dc9ef825815eee84d.js
+rmos_app.ed556cea05b7d0cbd5fc29e8363a8de0.css:
+    method: GET
+    name: /rmos/app.ed556cea05b7d0cbd5fc29e8363a8de0.css
+    url: http://front.test.rmos.com/rmos/app.ed556cea05b7d0cbd5fc29e8363a8de0.css
+rmos_c7c276fb9c1367665c4dd09f59dd6a5f.png:
+    method: GET
+    name: /rmos/c7c276fb9c1367665c4dd09f59dd6a5f.png
+    url: http://front.test.rmos.com/rmos/c7c276fb9c1367665c4dd09f59dd6a5f.png
+rmos_d72d879b4ff19be6b0666adeffcf7270.png:
+    method: GET
+    name: /rmos/d72d879b4ff19be6b0666adeffcf7270.png
+    url: http://front.test.rmos.com/rmos/d72d879b4ff19be6b0666adeffcf7270.png
+rmos_e22bf303ce3a1ad50702f067ace99cb4.png:
+    method: GET
+    name: /rmos/e22bf303ce3a1ad50702f067ace99cb4.png
+    url: http://front.test.rmos.com/rmos/e22bf303ce3a1ad50702f067ace99cb4.png
+rmos_skyTheme.da3ccedd6bebcb0b309916fa71f0466a.css:
+    method: GET
+    name: /rmos/skyTheme.da3ccedd6bebcb0b309916fa71f0466a.css
+    url: http://front.test.rmos.com/rmos/skyTheme.da3ccedd6bebcb0b309916fa71f0466a.css
+rmos_vendor.f1bf7427376a913bc225.js:
+    headers:
+        If-Modified-Since: Fri, 19 Oct 2018 06:40:25 GMT
+        If-None-Match: '"5bc97c59-101c61"'
+    method: GET
+    name: /rmos/vendor.f1bf7427376a913bc225.js
+    url: http://front.test.rmos.com/rmos/vendor.f1bf7427376a913bc225.js
+s_opensans_v13_DXI1ORHCpsQm3Vp6mXoaTegdm0LZdjqr5-oayXSOefg.woff2:
+    method: GET
+    name: /s/opensans/v13/DXI1ORHCpsQm3Vp6mXoaTegdm0LZdjqr5-oayXSOefg.woff2
+    url: https://fonts.gstatic.com/s/opensans/v13/DXI1ORHCpsQm3Vp6mXoaTegdm0LZdjqr5-oayXSOefg.woff2
+s_opensans_v13_cJZKeOuBrn4kERxqtaUH3VtXRa8TVwTICgirnJhmVJw.woff2:
+    method: GET
+    name: /s/opensans/v13/cJZKeOuBrn4kERxqtaUH3VtXRa8TVwTICgirnJhmVJw.woff2
+    url: https://fonts.gstatic.com/s/opensans/v13/cJZKeOuBrn4kERxqtaUH3VtXRa8TVwTICgirnJhmVJw.woff2
+s_opensans_v13_k3k702ZOKiLJc3WVjuplzOgdm0LZdjqr5-oayXSOefg.woff2:
+    method: GET
+    name: /s/opensans/v13/k3k702ZOKiLJc3WVjuplzOgdm0LZdjqr5-oayXSOefg.woff2
+    url: https://fonts.gstatic.com/s/opensans/v13/k3k702ZOKiLJc3WVjuplzOgdm0LZdjqr5-oayXSOefg.woff2
