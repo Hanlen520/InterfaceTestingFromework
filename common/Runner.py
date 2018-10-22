@@ -25,7 +25,7 @@ def test_generator(case_data, isSetupOrCase='case'):
 		if case_data['API Name'] != '':
 			# 如果执行函数
 			if '${' in  case_data['API Name']:
-				check = extract_functions(case_data['API Name'], self)
+				check = extract_functions(case_data['API Name'], CaseVariable)
 				self.assertTrue(check)
 				print('{}'.format(isSetupOrCase) + '\n')
 				print('函数{}执行成功'.format(case_data['API Name']) + '\n')
@@ -55,11 +55,11 @@ def test_generator(case_data, isSetupOrCase='case'):
 						# 执行函数
 						if '${' in v:
 							new_v = parse_string_value(extract_functions(v))
-							self.assertIsNotNone(v)
+							self.assertIsNotNone(new_v)
 						# 寻找变量
 						elif '$' in v:
 							new_v = parse_string_value(getattr(CaseVariable, v.replace('$', ''), None))
-							self.assertIsNotNone(v, '未定义变量{}'.format(v))
+							self.assertIsNotNone(new_v, '未定义变量{}'.format(v))
 						# 字符串
 						else:
 							new_v = v
@@ -75,7 +75,10 @@ def test_generator(case_data, isSetupOrCase='case'):
 			resp = TestRequest.test_request(url, method)
 		# post方法
 		elif str(method).lower() == 'post':
-			content_type = case_data['headers']['content-type']
+			try:
+				content_type = case_data['headers']['content-type']
+			except KeyError:
+				content_type = ''
 			# json和data形式
 			if 'multipart/form-data' not in content_type:
 				request_data = json.dumps(case_data['json']) if 'json' in content_type else case_data['data']
@@ -91,7 +94,7 @@ def test_generator(case_data, isSetupOrCase='case'):
 			resp = [-1]
 			print(method)
 		# status code为200
-		self.assertEqual(resp[0], 200, resp)
+		self.assertEqual(resp[0], 200,'\nrequest: {}\nresponse: {}'.format(request_data, resp))
 		check_point = case_data['Check Point']
 		if check_point:
 			for key, value in check_point.items():
@@ -144,7 +147,7 @@ def get_summary(**kwargs):
 	print('status code: {}'.format(kwargs['resp'][0]) + '\n')
 	print('response: {}'.format(kwargs['resp'][1]) + '\n')
 	print('response time: {}'.format(kwargs['resp'][2]) + '\n')
-	print('============================================================')
+	print('=========================================================================================================')
 	
 def get_sheetdata():
 	all_caseinfo = GetData().get_case_data()
@@ -171,7 +174,7 @@ def run_test():
 		for n, case_data in enumerate(case_datas):
 			test = test_generator(case_data)
 			description = case_data['Description']
-			setattr(TestSequense, 'test_{}_{}'.format(n, description), test)
+			setattr(TestSequense, 'test_{:03d}_{}'.format(n, description), test)
 		loaded_testcase = loader.loadTestsFromTestCase(TestSequense)
 		loaded_testcases.append(loaded_testcase)
 	test_suite = unittest.TestSuite(loaded_testcases)
@@ -185,15 +188,13 @@ def run_test():
 	# 	description=u'用例执行情况：')
 	# runner.run(test_suite)
 	
-	runner = unittest.TextTestRunner()
-	result = runner.run(test_suite)
-	print(result)
+	# runner = unittest.TextTestRunner()
+	# result = runner.run(test_suite)
+	# print(result)
 	
-	# result = BeautifulReport(test_suite)
-	# result.report(filename= filename, description ='接口测试', log_path =report_path)
+	result = BeautifulReport(test_suite)
+	result.report(filename= filename, description ='接口测试', log_path =report_path)
 
 
 if __name__ == "__main__":
 	run_test()
-	
-	
