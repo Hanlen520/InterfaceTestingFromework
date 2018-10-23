@@ -34,7 +34,7 @@ def test_generator(case_data, isSetupOrCase='case'):
 			# 根据API NAME找到yml数据
 			yml_data = Data.get_yml_data(Data.change_api_name(case_data['API Name']))
 			# 数据不为空
-			self.assertNotEqual(yml_data, {})
+			self.assertNotEqual(yml_data, {}, '未找到对应的yml文件数据：{}'.format(case_data['API Name']))
 			# yml数据加到case_data中
 			for key, value in yml_data.items():
 				case_data[key] = value
@@ -95,6 +95,8 @@ def test_generator(case_data, isSetupOrCase='case'):
 			print(method)
 		# status code为200
 		self.assertEqual(resp[0], 200,'\nrequest: {}\nresponse: {}'.format(request_data, resp))
+		get_summary(url=url, method=method, resp=resp, isSetupOrCase=isSetupOrCase, headers=headers,
+		            request_data=request_data)
 		check_point = case_data['Check Point']
 		if check_point:
 			for key, value in check_point.items():
@@ -150,7 +152,6 @@ def test_generator(case_data, isSetupOrCase='case'):
 				else:
 					value = parse_string(value)
 					setattr(CaseVariable, key, eval(str(resp[1]) + str(value)))
-		get_summary(url=url, method=method, resp=resp, isSetupOrCase=isSetupOrCase, headers=headers, request_data=request_data)
 	return test
 
 def get_summary(**kwargs):
