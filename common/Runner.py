@@ -17,8 +17,8 @@ class CaseVariable:
 def test_generator(case_data, isSetupOrCase='case'):
 	def test(self):
 		if isSetupOrCase == 'setup' or isSetupOrCase == 'teardown':
-			if case_data['API Name'] == '':
-				print('{}为空'.format(isSetupOrCase))
+			if case_data['API Name'] == '' or case_data['Active'] == 'No':
+				print('{}跳过执行'.format(isSetupOrCase))
 				return test
 		Data = GetData()
 		yml_data = None
@@ -177,6 +177,10 @@ def run_test():
 	sheet_datas = get_sheetdata()
 	loaded_testcases = []
 	loader = unittest.TestLoader()
+	username = GetData().get_config_data('Host', 'username')
+	password = GetData().get_config_data('Host', 'password')
+	setattr(CaseVariable, 'username', username)
+	setattr(CaseVariable, 'password', password)
 	for sheet_data in sheet_datas:
 		sheet_name = sheet_data['sheet_name']
 		TestSequense = type(sheet_name, (unittest.TestCase,), {})
