@@ -41,8 +41,9 @@ def test_generator(case_data, isSetupOrCase='case'):
 			# 有Host信息则替换yml中的url对应的host
 			host = str(case_data['Host']).strip()
 			if host != '':
-				host = Data.get_config_data('Host', host)
-				case_data['url'] = host + '/' + case_data['url'].split('/', 3)[-1]
+				new_host = Data.get_config_data('Host', host)
+				setattr(CaseVariable, host, new_host)
+				case_data['url'] = new_host + '/' + case_data['url'].split('/', 3)[-1]
 			case_data['Correlation'] = parse_data(case_data['Correlation'])
 			case_data['Check Point'] = Data.change_check_point(case_data['Check Point'])
 			# 根据Request Headers和Request Data替换case_data中的数据
