@@ -70,9 +70,10 @@ def test_generator(case_data, isSetupOrCase='case'):
 		url = case_data['url']
 		headers = ''
 		request_data = ''
-		# get放法
+		# get方法
 		if str(method).lower() == 'get':
-			resp = TestRequest.test_request(url, method)
+			headers = case_data['headers']
+			resp = TestRequest.test_request(url, method, headers=headers)
 		# post方法
 		elif str(method).lower() == 'post':
 			try:
@@ -158,6 +159,7 @@ def get_summary(**kwargs):
 	print('{}'.format(kwargs['isSetupOrCase']) + '\n')
 	print('url: {}'.format(kwargs['url']) + '\n')
 	print('method: {}'.format(kwargs['method']) + '\n')
+	print('headers: {}'.format(kwargs['headers']) + '\n')
 	print('request data: {}'.format(kwargs['request_data']) + '\n')
 	print('status code: {}'.format(kwargs['resp'][0]) + '\n')
 	print('response: {}'.format(kwargs['resp'][1]) + '\n')
