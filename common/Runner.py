@@ -102,17 +102,31 @@ def test_generator(case_data, isSetupOrCase='case'):
 				key = parse_string(key)
 				if type(value) == str:
 					# 值为字符串直接对比
-					self.assertEqual(str(eval(str(resp[1]) + str(key))), value, '{}值不为{}'.format(key, value))
+					new_value = getattr(CaseVariable, value.replace('$', ''), None) if '$' in value else value
+					self.assertIsNotNone(new_value, '未定义变量{}'.format(value))
+					self.assertEqual(eval(str(resp[1]) + str(key)), new_value, '{}值不为{}'.format(key, new_value))
 				elif type(value) == list:
 					# 值为列表取对比方法
-					assertMethod = value[1]
 					# 目前支持=、in、not in
+					new_value = getattr(CaseVariable, value[0].replace('$', ''), None) if '$' in value[0] else value[0]
+					# 不为列表转换为字符串进行对比
+					new_value = str(new_value) if type(new_value) != list else new_value
+					assert_value = str(eval(str(resp[1]) + str(key))) if type(eval(str(resp[1]) + str(key))) != list else eval(str(resp[1]) + str(key))
+					
+					self.assertIsNotNone(new_value, '未定义变量{}'.format(value))
+					assertMethod = value[1]
 					if assertMethod == '=':
-						self.assertEqual(str(eval(str(resp[1]) + str(key))), value[0],  '{}值不为{}'.format(key, value[0]))
+						self.assertTrue(assert_value == new_value,  '{}值不为{}'.format(key, new_value))
 					elif str(assertMethod).lower() == 'in':
-						self.assertTrue(value[0] in str(eval(str(resp[1]) + str(key))), '{}值不在{}中'.format(value[0], key))
+						if type(new_value) == list:
+							self.assertTrue(set(new_value) < set(assert_value), '{}值不在{}中'.format(new_value, key))
+						else:
+							self.assertTrue(new_value in assert_value, '{}值不在{}中'.format(new_value, key))
 					elif str(assertMethod).lower() == 'not in':
-						self.assertTrue(value[0] not in str(eval(str(resp[1]) + str(key))),'{}值在{}中'.format(value[0], key))
+						if type(new_value) == list:
+							self.assertNotTrue(set(new_value) < set(assert_value), '{}值不在{}中'.format(new_value, key))
+						else:
+							self.assertTrue(new_value not in eval(str(resp[1]) + str(key)),'{}值在{}中'.format(new_value, key))
 					# 错误的断言方法
 					else:
 						print(check_point)
@@ -129,13 +143,13 @@ def test_generator(case_data, isSetupOrCase='case'):
 				if 'request.' in value:
 					if 'json' in value:
 						value = parse_string(value.replace('request.json.', ''))
-						setattr(CaseVariable, key, str(eval(str(json.loads(request_data)) + str(value))))
+						setattr(CaseVariable, key, eval(str(json.loads(request_data)) + str(value)))
 					else:
 						value = parse_string(value.replace('request.data.', ''))
-						setattr(CaseVariable, key, str(eval(str(request_data) + str(value))))
+						setattr(CaseVariable, key, eval(str(request_data) + str(value)))
 				else:
 					value = parse_string(value)
-					setattr(CaseVariable, key, str(eval(str(resp[1]) + str(value))))
+					setattr(CaseVariable, key, eval(str(resp[1]) + str(value)))
 		get_summary(url=url, method=method, resp=resp, isSetupOrCase=isSetupOrCase, headers=headers, request_data=request_data)
 	return test
 
