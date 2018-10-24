@@ -14,6 +14,112 @@ report_path = os.path.abspath('..') + '\\report'
 class CaseVariable:
 	pass
 
+@classmethod
+def setUpClass(cls):
+	datas = getattr(CaseVariable, 'setup_class')
+	try:
+		check = test_class(datas,'setUpClass')
+		if not check:
+			print('setUpClass执行失败')
+	except BaseException as e:
+		print('setUpClass执行失败: {}'.format(e))
+	cls.start_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
+	print("Start test at {}".format(cls.start_time))
+
+@classmethod
+def tearDownClass(cls):
+	datas = getattr(CaseVariable, 'teardown_class')
+	try:
+		check = test_class(datas, 'tearDownClass')
+		if not check:
+			print('tearDownClass执行失败')
+	except BaseException as e:
+		print('tearDownClass执行失败: {}'.format(e))
+	cls.end_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
+	print("End test at {}".format(cls.end_time))
+	timestamp = time.mktime(time.strptime(cls.end_time, "%Y-%m-%d %H:%M:%S")) - time.mktime(time.strptime(cls.start_time, "%Y-%m-%d %H:%M:%S"))
+	print('\n运行时间：{}秒'.format(timestamp))
+	
+def test_class(datas, classname):
+	for data in datas:
+		if data['API Name'] == '' or data['Active'] == 'No':
+			print('{}:{}跳过执行'.format(classname, data['Description']))
+			continue
+		print('{}:{}开始执行'.format(classname, data['Description']))
+		Data = GetData()
+		# 如果执行函数
+		if '${' in  data['API Name']:
+			check = extract_functions(data['API Name'], CaseVariable)
+			print('{}'.format(classname) + '\n')
+			print('函数{}执行成功'.format(data['API Name']) + '\n')
+			print('=========================================================================================================')
+			continue
+		# 根据API NAME找到yml数据
+		yml_data = Data.get_yml_data(Data.change_api_name(data['API Name']))
+		if yml_data == {}:
+			print('{}:{} 未找到yml文件数据：{}'.format(classname, data['Description'],data['API Name']))
+			return False
+		# yml数据加到case_data中
+		for key, value in yml_data.items():
+			data[key] = value
+		# 有Host信息则替换yml中的url对应的host
+		host = str(data['Host']).strip()
+		if host != '':
+			new_host = Data.get_config_data('Host', host)
+			setattr(CaseVariable, host, new_host)
+			data['url'] = new_host + '/' + data['url'].split('/', 3)[-1]
+		data['Correlation'] = parse_data(data['Correlation'])
+		data['Check Point'] = Data.change_check_point(data['Check Point'])
+		# 根据Request Headers和Request Data替换case_data中的数据
+		for function in [data['Request Headers'], data['Request Data']]:
+			function = parse_data(function)
+			if function:
+				for k, v in function.items():
+					k = k.split('.') if '.' in k else [k]
+					k = [parse_string_value(x) for x in k]
+					# 执行函数
+					if '${' in v:
+						new_v = parse_string_value(extract_functions(v,CaseVariable))
+					# 寻找变量
+					elif '$' in v:
+						new_v = parse_string_value(getattr(CaseVariable, v.replace('$', ''), None))
+					# 字符串
+					else:
+						new_v = v
+					change_data(yml_data, new_v, k)
+		# 如果没有API NAME信息失败
+		method = data['method']
+		url = data['url']
+		headers = ''
+		request_data = ''
+		# get方法
+		if str(method).lower() == 'get':
+			headers = data['headers']
+			resp = TestRequest.test_request(url, method, headers=headers)
+		# post方法
+		elif str(method).lower() == 'post':
+			try:
+				content_type = data['headers']['content-type']
+			except KeyError:
+				content_type = ''
+			# json和data形式
+			if 'multipart/form-data' not in content_type:
+				request_data = json.dumps(data['json']) if 'json' in content_type else data['data']
+				headers = data['headers']
+				resp = TestRequest.test_request(url, method, headers, request_data)
+			# 上传文件
+			else:
+				request_data = parse_data(data['Request Data'])
+				headers = data['headers']
+				resp = eval('TestRequest.multipart_form_data')(url, headers, request_data)
+		# 其他方法，遇到再补充
+		else:
+			resp = [-1]
+			print(method)
+		get_summary(url=url, method=method, resp=resp, headers=headers,
+		            request_data=request_data)
+	return True
+
 def test_generator(case_datas, isSetupOrCase='case'):
 	def test(self):
 		if type(case_datas) == list:
@@ -35,7 +141,7 @@ def test_generator(case_datas, isSetupOrCase='case'):
 				cls.assertTrue(check)
 				print('{}'.format(isSetupOrCase) + '\n')
 				print('函数{}执行成功'.format(case_data['API Name']) + '\n')
-				print('============================================================')
+				print('=========================================================================================================')
 				return test
 			# 根据API NAME找到yml数据
 			yml_data = Data.get_yml_data(Data.change_api_name(case_data['API Name']))
@@ -61,7 +167,7 @@ def test_generator(case_datas, isSetupOrCase='case'):
 						k = [parse_string_value(x) for x in k]
 						# 执行函数
 						if '${' in v:
-							new_v = parse_string_value(extract_functions(v))
+							new_v = parse_string_value(extract_functions(v,CaseVariable))
 							cls.assertIsNotNone(new_v)
 						# 寻找变量
 						elif '$' in v:
@@ -108,21 +214,30 @@ def test_generator(case_datas, isSetupOrCase='case'):
 		check_point = case_data['Check Point']
 		if check_point:
 			for key, value in check_point.items():
-				# 转换形式data1.data2 ==> [data1][data2]
-				key = parse_string(key)
+				if '${' in key:
+					key = parse_string_value(extract_functions(key, CaseVariable))
+					cls.assertIsNotNone(key)
+				else:
+					# 转换形式data1.data2 ==> [data1][data2]
+					key = parse_string(key)
 				if type(value) == str:
 					# 值为字符串直接对比
 					new_value = getattr(CaseVariable, value.replace('$', ''), None) if '$' in value else value
 					cls.assertIsNotNone(new_value, '未定义变量{}'.format(value))
-					cls.assertEqual(eval(str(resp[1]) + str(key)), new_value, '{}值不为{}'.format(key, new_value))
+					if '${' in key:
+						cls.assertEqual(key, new_value, '{}值不为{}'.format(key, new_value))
+					else:
+						cls.assertEqual(eval(str(resp[1]) + str(key)), new_value, '{}值不为{}'.format(key, new_value))
 				elif type(value) == list:
 					# 值为列表取对比方法
 					# 目前支持=、in、not in
 					new_value = getattr(CaseVariable, value[0].replace('$', ''), None) if '$' in value[0] else value[0]
 					# 不为列表转换为字符串进行对比
 					new_value = str(new_value) if type(new_value) != list else new_value
-					assert_value = str(eval(str(resp[1]) + str(key))) if type(eval(str(resp[1]) + str(key))) != list else eval(str(resp[1]) + str(key))
-					
+					if '${' in key:
+						assert_value = key
+					else:
+						assert_value = str(eval(str(resp[1]) + str(key))) if type(eval(str(resp[1]) + str(key))) != list else eval(str(resp[1]) + str(key))
 					cls.assertIsNotNone(new_value, '未定义变量{}'.format(value))
 					assertMethod = value[1]
 					if assertMethod == '=':
@@ -163,14 +278,17 @@ def test_generator(case_datas, isSetupOrCase='case'):
 	return test
 
 def get_summary(**kwargs):
-	print('{}'.format(kwargs['isSetupOrCase']) + '\n')
-	print('url: {}'.format(kwargs['url']) + '\n')
-	print('method: {}'.format(kwargs['method']) + '\n')
-	print('headers: {}'.format(kwargs['headers']) + '\n')
-	print('request data: {}'.format(kwargs['request_data']) + '\n')
-	print('status code: {}'.format(kwargs['resp'][0]) + '\n')
-	print('response: {}'.format(kwargs['resp'][1]) + '\n')
-	print('response time: {}'.format(kwargs['resp'][2]) + '\n')
+	try:
+		print('{}'.format(kwargs['isSetupOrCase']))
+	except:
+		pass
+	print('url: {}'.format(kwargs['url']))
+	print('method: {}'.format(kwargs['method']))
+	print('headers: {}'.format(kwargs['headers']))
+	print('request data: {}'.format(kwargs['request_data']))
+	print('status code: {}'.format(kwargs['resp'][0]))
+	print('response: {}'.format(kwargs['resp'][1]))
+	print('response time: {}'.format(kwargs['resp'][2]))
 	print('=========================================================================================================')
 	
 def get_sheetdata():
@@ -178,7 +296,7 @@ def get_sheetdata():
 	for excel_datas in all_caseinfo:
 		for sheet_datas in excel_datas:
 			yield sheet_datas
-		
+	
 def run_test():
 	sheet_datas = get_sheetdata()
 	loaded_testcases = []
@@ -189,9 +307,13 @@ def run_test():
 	setattr(CaseVariable, 'password', password)
 	for sheet_data in sheet_datas:
 		sheet_name = sheet_data['sheet_name']
+		setup_class = sheet_data['setupclass']
+		teardown_class = sheet_data['teardownclass']
+		setattr(CaseVariable, 'setup_class', setup_class)
+		setattr(CaseVariable, 'teardown_class', teardown_class)
 		TestSequense = type(sheet_name, (unittest.TestCase,), {})
-		before_class = sheet_data['beforeClass']
-		after_class = sheet_data['afterClass']
+		TestSequense.setUpClass = setUpClass
+		TestSequense.tearDownClass = tearDownClass
 		setup_data = sheet_data['setup']
 		teardown_data = sheet_data['teardown']
 		case_datas = sheet_data['testcase']
@@ -216,12 +338,12 @@ def run_test():
 	# 	description=u'用例执行情况：')
 	# runner.run(test_suite)
 	
-	# runner = unittest.TextTestRunner()
-	# result = runner.run(test_suite)
-	# print(result)
+	runner = unittest.TextTestRunner()
+	result = runner.run(test_suite)
+	print(result)
 	
-	result = BeautifulReport(test_suite)
-	result.report(filename= filename, description ='接口测试', log_path =report_path)
+	# result = BeautifulReport(test_suite)
+	# result.report(filename= filename, description ='接口测试', log_path =report_path)
 
 
 if __name__ == "__main__":

@@ -156,78 +156,36 @@ class GetData:
 					continue
 				test_data['case_name'] = table.cell(0, 1).value    # 名称
 				test_data['priority'] = table.cell(1, 1).value     # 优先级
-				
-				before_class = {}                                  # 前置条件
-				before_class['operation'] = table.cell(2, 2).value
-				# 前置操作为数据库操作
-				if before_class['operation'] == '数据库操作':
-					before_class['db_name'] = table.cell(4, 2).value.strip()
-					# 数据库操作不为空则去配置文件获取相应信息
-					if before_class['db_name'] != '':
-						before_class['host'] = self.get_config_data(before_class['db_name'], 'host')
-						before_class['user'] = self.get_config_data(before_class['db_name'], 'user')
-						before_class['password'] = self.get_config_data(before_class['db_name'], 'password')
-						before_class['sql'] = table.cell(5, 2).value
-				# 前置操作为API形式
-				else:
-					before_class['API Name'] = self.change_api_name(table.cell(3, 2).value)
-					before_class['request_data'] = table.cell(4, 2).value
-					# 根据excel数据替换yml文件数据
-					yml_data = self.change_request_info(before_class, before_class['request_data'])
-					# yml文件数据添加到excel数据中
-					for key, value in yml_data.items():
-						before_class[key] = value
-					before_class['response'] = parse_data(table.cell(5, 2).value)
-					before_class.pop('request_data')
-				test_data['beforeClass'] = before_class
-				
-				after_class = {}                                    # 后置条件
-				after_class['operation'] = table.cell(6, 2).value
-				if after_class['operation'] == '数据库操作':
-					after_class['db_name'] = table.cell(8, 2).value.strip()
-					if after_class['db_name'] != '':
-						after_class['host'] = self.get_config_data(after_class['db_name'], 'host')
-						after_class['user'] = self.get_config_data(after_class['db_name'], 'user')
-						after_class['password'] = self.get_config_data(after_class['db_name'], 'password')
-						after_class['sql'] = table.cell(9, 2).value
-				else:
-					after_class['API Name'] = self.change_api_name(table.cell(7, 2).value)
-					after_class['request_data'] = table.cell(8, 2).value
-					yml_data = self.change_request_info(after_class, after_class['request_data'])
-					for key, value in yml_data.items():
-						after_class[key] = value
-					after_class['response'] = parse_data(table.cell(5, 2).value)
-					after_class.pop('request_data')
-				test_data['afterClass'] = after_class
+			
 				# 获取case列表的title
-				title = {i: str(table.cell(12, i).value).strip().strip('\r').strip('\n') for i in range(table.ncols)}
+				title = {i: str(table.cell(4, i).value).strip().strip('\r').strip('\n') for i in range(table.ncols)}
 				case_row = table.nrows
 				# 获取setup、teardown信息行数
-				for i in range(13, table.nrows):
-					description = str(table.cell(i, 1).value).strip().strip('\r').strip('\n').lower()
-					if description != 'setup' and description != 'teardown':
+				for i in range(5, table.nrows):
+					description = str(table.cell(i, 0).value).strip().strip('\r').strip('\n').lower()
+					if description != 'setupclass' and description != 'teardownclass' and description != 'teardown' and description != 'setup':
 						case_row = i
 						break
-				setup_or_teardown = [{title[i]: str(table.cell(j, i).value).strip().strip('\r').strip('\n') for i in range(table.ncols)} for j in range(13, case_row)]
-				setup_list = [setup for setup in setup_or_teardown if str(setup['Description']).lower() == 'setup']
-				teardown_list = [teardown for teardown in setup_or_teardown if str(teardown['Description']).lower() == 'teardown']
-				# # setup信息
-				# setup = {title[i]: str(table.cell(13, i).value).strip().strip('\r').strip('\n') for i in range(table.ncols)}
-				# # teardown信息
-				# teardown = {title[i]: str(table.cell(14, i).value).strip().strip('\r').strip('\n') for i in range(table.ncols)}
+				# setup、teardown、setupclass、teardownclass数据
+				setup_or_teardown = [{title[i]: str(table.cell(j, i).value).strip().strip('\r').strip('\n') for i in range(table.ncols)} for j in range(5, case_row)]
+				setup_list = [setup for setup in setup_or_teardown if str(setup['No.']).lower() == 'setup']
+				teardown_list = [teardown for teardown in setup_or_teardown if str(teardown['No.']).lower() == 'teardown']
+				setupclass_list = [setupclass for setupclass in setup_or_teardown if str(setupclass['No.']).lower() == 'setupclass']
+				teardownclass_list = [teardownclass for teardownclass in setup_or_teardown if str(teardownclass['No.']).lower() == 'teardownclass']
 				caselist = []
 				# 所有的case信息
 				for j in range(case_row, table.nrows):
 					case = {title[i] : str(table.cell(j, i).value).strip().strip('\r').strip('\n') for i in range(table.ncols)}
 					if case['Active'] == 'No':
 						continue
-					# case = self.change_case_info(case)
 					caselist.append(case)
 				test_data['setup'] = setup_list
 				test_data['teardown'] = teardown_list
+				test_data['setupclass'] = setupclass_list
+				test_data['teardownclass'] = teardownclass_list
 				test_data['testcase'] = caselist
 				sheetinfo.append(test_data)
 			all_caseinfo.append(sheetinfo)
 		return all_caseinfo
 if __name__ == '__main__':
-	print(GetData().get_case_data())
+	GetData().get_case_data()
