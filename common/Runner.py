@@ -14,8 +14,14 @@ report_path = os.path.abspath('..') + '\\report'
 class CaseVariable:
 	pass
 
-def test_generator(case_data, isSetupOrCase='case'):
+def test_generator(case_datas, isSetupOrCase='case'):
 	def test(self):
+		if type(case_datas) == list:
+			for case_data in case_datas:
+				case(case_data,self)
+		else:
+			case(case_datas,self)
+	def case(case_data,cls):
 		if isSetupOrCase == 'setup' or isSetupOrCase == 'teardown':
 			if case_data['API Name'] == '' or case_data['Active'] == 'No':
 				print('{}跳过执行'.format(isSetupOrCase))
@@ -26,7 +32,7 @@ def test_generator(case_data, isSetupOrCase='case'):
 			# 如果执行函数
 			if '${' in  case_data['API Name']:
 				check = extract_functions(case_data['API Name'], CaseVariable)
-				self.assertTrue(check)
+				cls.assertTrue(check)
 				print('{}'.format(isSetupOrCase) + '\n')
 				print('函数{}执行成功'.format(case_data['API Name']) + '\n')
 				print('============================================================')
@@ -34,7 +40,7 @@ def test_generator(case_data, isSetupOrCase='case'):
 			# 根据API NAME找到yml数据
 			yml_data = Data.get_yml_data(Data.change_api_name(case_data['API Name']))
 			# 数据不为空
-			self.assertNotEqual(yml_data, {}, '未找到对应的yml文件数据：{}'.format(case_data['API Name']))
+			cls.assertNotEqual(yml_data, {}, '未找到对应的yml文件数据：{}'.format(case_data['API Name']))
 			# yml数据加到case_data中
 			for key, value in yml_data.items():
 				case_data[key] = value
@@ -56,17 +62,17 @@ def test_generator(case_data, isSetupOrCase='case'):
 						# 执行函数
 						if '${' in v:
 							new_v = parse_string_value(extract_functions(v))
-							self.assertIsNotNone(new_v)
+							cls.assertIsNotNone(new_v)
 						# 寻找变量
 						elif '$' in v:
 							new_v = parse_string_value(getattr(CaseVariable, v.replace('$', ''), None))
-							self.assertIsNotNone(new_v, '未定义变量{}'.format(v))
+							cls.assertIsNotNone(new_v, '未定义变量{}'.format(v))
 						# 字符串
 						else:
 							new_v = v
 						change_data(yml_data, new_v, k)
 		# 如果没有API NAME信息失败
-		self.assertIsNotNone(yml_data,'没有读取到API NAME信息')
+		cls.assertIsNotNone(yml_data,'没有读取到API NAME信息')
 		method = case_data['method']
 		url = case_data['url']
 		headers = ''
@@ -96,7 +102,7 @@ def test_generator(case_data, isSetupOrCase='case'):
 			resp = [-1]
 			print(method)
 		# status code为200
-		self.assertEqual(resp[0], 200,'\nrequest: {}\nresponse: {}'.format(request_data, resp))
+		cls.assertEqual(resp[0], 200,'\nrequest: {}\nresponse: {}'.format(request_data, resp))
 		get_summary(url=url, method=method, resp=resp, isSetupOrCase=isSetupOrCase, headers=headers,
 		            request_data=request_data)
 		check_point = case_data['Check Point']
@@ -107,8 +113,8 @@ def test_generator(case_data, isSetupOrCase='case'):
 				if type(value) == str:
 					# 值为字符串直接对比
 					new_value = getattr(CaseVariable, value.replace('$', ''), None) if '$' in value else value
-					self.assertIsNotNone(new_value, '未定义变量{}'.format(value))
-					self.assertEqual(eval(str(resp[1]) + str(key)), new_value, '{}值不为{}'.format(key, new_value))
+					cls.assertIsNotNone(new_value, '未定义变量{}'.format(value))
+					cls.assertEqual(eval(str(resp[1]) + str(key)), new_value, '{}值不为{}'.format(key, new_value))
 				elif type(value) == list:
 					# 值为列表取对比方法
 					# 目前支持=、in、not in
@@ -117,28 +123,28 @@ def test_generator(case_data, isSetupOrCase='case'):
 					new_value = str(new_value) if type(new_value) != list else new_value
 					assert_value = str(eval(str(resp[1]) + str(key))) if type(eval(str(resp[1]) + str(key))) != list else eval(str(resp[1]) + str(key))
 					
-					self.assertIsNotNone(new_value, '未定义变量{}'.format(value))
+					cls.assertIsNotNone(new_value, '未定义变量{}'.format(value))
 					assertMethod = value[1]
 					if assertMethod == '=':
-						self.assertTrue(assert_value == new_value,  '{}值不为{}'.format(key, new_value))
+						cls.assertTrue(assert_value == new_value,  '{}值不为{}'.format(key, new_value))
 					elif str(assertMethod).lower() == 'in':
 						if type(new_value) == list:
-							self.assertTrue(set(new_value) < set(assert_value), '{}值不在{}中'.format(new_value, key))
+							cls.assertTrue(set(new_value) < set(assert_value), '{}值不在{}中'.format(new_value, key))
 						else:
-							self.assertTrue(new_value in assert_value, '{}值不在{}中'.format(new_value, key))
+							cls.assertTrue(new_value in assert_value, '{}值不在{}中'.format(new_value, key))
 					elif str(assertMethod).lower() == 'not in':
 						if type(new_value) == list:
-							self.assertNotTrue(set(new_value) < set(assert_value), '{}值不在{}中'.format(new_value, key))
+							cls.assertNotTrue(set(new_value) < set(assert_value), '{}值不在{}中'.format(new_value, key))
 						else:
-							self.assertTrue(new_value not in eval(str(resp[1]) + str(key)),'{}值在{}中'.format(new_value, key))
+							cls.assertTrue(new_value not in eval(str(resp[1]) + str(key)),'{}值在{}中'.format(new_value, key))
 					# 错误的断言方法
 					else:
 						print(check_point)
-						self.assertEqual('Check Point', '断言方法')
+						cls.assertEqual('Check Point', '断言方法')
 				# 错误的断言方法
 				else:
 					print(check_point)
-					self.assertEqual('Check Point', '断言方法')
+					cls.assertEqual('Check Point', '断言方法')
 		correlation = case_data['Correlation']
 		# 取值，保存为类变量
 		if correlation:

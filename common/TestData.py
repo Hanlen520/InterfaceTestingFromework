@@ -202,22 +202,33 @@ class GetData:
 				test_data['afterClass'] = after_class
 				# 获取case列表的title
 				title = {i: str(table.cell(12, i).value).strip().strip('\r').strip('\n') for i in range(table.ncols)}
-				# setup信息
-				setup = {title[i]: str(table.cell(13, i).value).strip().strip('\r').strip('\n') for i in range(table.ncols)}
-				# teardown信息
-				teardown = {title[i]: str(table.cell(14, i).value).strip().strip('\r').strip('\n') for i in range(table.ncols)}
+				case_row = table.nrows
+				# 获取setup、teardown信息行数
+				for i in range(13, table.nrows):
+					description = str(table.cell(i, 1).value).strip().strip('\r').strip('\n').lower()
+					if description != 'setup' and description != 'teardown':
+						case_row = i
+						break
+				setup_or_teardown = [{title[i]: str(table.cell(j, i).value).strip().strip('\r').strip('\n') for i in range(table.ncols)} for j in range(13, case_row)]
+				setup_list = [setup for setup in setup_or_teardown if str(setup['Description']).lower() == 'setup']
+				teardown_list = [teardown for teardown in setup_or_teardown if str(teardown['Description']).lower() == 'teardown']
+				# # setup信息
+				# setup = {title[i]: str(table.cell(13, i).value).strip().strip('\r').strip('\n') for i in range(table.ncols)}
+				# # teardown信息
+				# teardown = {title[i]: str(table.cell(14, i).value).strip().strip('\r').strip('\n') for i in range(table.ncols)}
 				caselist = []
 				# 所有的case信息
-				for j in range(15, table.nrows):
+				for j in range(case_row, table.nrows):
 					case = {title[i] : str(table.cell(j, i).value).strip().strip('\r').strip('\n') for i in range(table.ncols)}
 					if case['Active'] == 'No':
 						continue
 					# case = self.change_case_info(case)
 					caselist.append(case)
-				test_data['setup'] = setup
-				test_data['teardown'] = teardown
+				test_data['setup'] = setup_list
+				test_data['teardown'] = teardown_list
 				test_data['testcase'] = caselist
 				sheetinfo.append(test_data)
 			all_caseinfo.append(sheetinfo)
 		return all_caseinfo
-	
+if __name__ == '__main__':
+	print(GetData().get_case_data())
