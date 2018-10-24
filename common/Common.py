@@ -37,7 +37,6 @@ def extract_functions(content,cls=None):
     else:
         params = '(' + ','.join(params) + ')'
         content = content.split('(')[0] + params
-        # print(content)
         try:
             return eval(content)
         except BaseException as e:

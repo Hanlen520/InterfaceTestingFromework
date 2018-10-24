@@ -84,7 +84,6 @@ class GetData:
 		:param name: api的名称
 		:return: 对应的数据 {name:{}}
 		'''
-		yml=[]
 		yml_files = self.list_all_files(self.yml_path)
 		for yml_file in yml_files:
 			with open(yml_file, 'rb') as f:
