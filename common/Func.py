@@ -23,7 +23,7 @@ def deleteDataSetByName(token, datasetname):
 	url = host + getDataSetList_api
 	request_data = json.dumps(Data.get_yml_data(Data.change_api_name(getDataSetList_api))['json'])
 	headers = {'token': token}
-	resp = TestRequest().test_request(url=url, method='post', headers=headers, data=request_data)
+	resp = TestRequest.test_request(url=url, method='post', headers=headers, data=request_data)
 	if resp[0] != 200:return False
 	data_list = resp[1]['data']['list']
 	data_id = ''
@@ -40,7 +40,7 @@ def deleteDataSetByName(token, datasetname):
 	request_data['table_type'] = int(type)
 	request_data = json.dumps(request_data)
 	headers = {'token': token}
-	resp = TestRequest().test_request(url=url, method='post', headers=headers, data=request_data)
+	resp = TestRequest.test_request(url=url, method='post', headers=headers, data=request_data)
 	return False if resp[0] != 200 or resp[1]['code'] != 0 else True
 
 def deleteCampaignByName(token, campaignname):
@@ -52,7 +52,7 @@ def deleteCampaignByName(token, campaignname):
 	url = host + api
 	request_data = json.dumps(Data.get_yml_data(Data.change_api_name(api))['json'])
 	headers = {'token': token}
-	resp = TestRequest().test_request(url=url, method='post', headers=headers, data=request_data)
+	resp = TestRequest.test_request(url=url, method='post', headers=headers, data=request_data)
 	if resp[0] != 200:return False
 	data_list = resp[1]['data']['list']
 	data_id = ''
@@ -67,7 +67,7 @@ def deleteCampaignByName(token, campaignname):
 	request_data['rmos_campaign_id'] = int(data_id)
 	request_data = json.dumps(request_data)
 	headers = {'token': token}
-	resp = TestRequest().test_request(url=url, method='post', headers=headers, data=request_data)
+	resp = TestRequest.test_request(url=url, method='post', headers=headers, data=request_data)
 	return False if resp[0] != 200 or resp[1]['code'] != 0 else True
 
 if __name__ == '__main__':
