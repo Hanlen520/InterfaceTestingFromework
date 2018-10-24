@@ -3,19 +3,15 @@ api_User_login:
     data:
         username: qinshiqiang@addnewer.com
         remember: 1
-        password: cae5c72cbecaa37782875028870c9235
+        password: 111
         domain: http://account.test.com
     headers:
         content-type: application/x-www-form-urlencoded; charset=UTF-8
     method: POST
-    
-api_User_login1:
-    url: http://account.test.com/api/User/login
-    data:
-        username: qinshiqiang@addnewer.com
-        remember: 1
-        password: cae5c72cbecaa37782875028870c9235
-        domain: http://account.test.com
+api_Power_Power_User_changeOrg:
+    url: http://front.test.rmos.com/api/Power/Power/User/changeOrg
+    json:
+        id: 1
     headers:
-        content-type: application/x-www-form-urlencoded; charset=UTF-8
+        content-type: application/json;charset=UTF-8
     method: POST

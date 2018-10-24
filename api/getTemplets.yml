@@ -108,12 +108,11 @@ apicm_Page_Campaign_Templet_getTempletPreviewList:
 apicm_Page_Campaign_Templet_getTemplets:
     headers:
         content-type: application/json;charset=UTF-8
-        token: b3406a5811a9764b5b27464ed7135abafea9b344
-    json:
-        search: t
+        token: d840d55e32ddde26b877f387192c030dc6be55f3
+    json: {}
     method: POST
     name: /apicm/Page/Campaign/Templet/getTemplets
-    url: http://front.test.rmos.com/apicm/Page/Campaign/Templet/getTemplets
+    url: http://reachmaxos.sandbox.addnewer.com/apicm/Page/Campaign/Templet/getTemplets
 apicm_TD_Campaign_Campaign_checkTagPermission:
     headers:
         content-type: application/json;charset=UTF-8

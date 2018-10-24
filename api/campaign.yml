@@ -637,3 +637,162 @@ apicm_Page_Campaign_Campaign_getRmosList:
     method: POST
     name: /apicm/Page/Campaign/Campaign/getRmosList
     url: http://front.test.rmos.com/apicm/Page/Campaign/Campaign/getRmosList
+apicm_Page_Campaign_Campaign_setCampaignHeader:
+    headers:
+        content-type: application/json;charset=UTF-8
+        token: a5a70ee950658994a10c676f81e64cfcf4d84357
+    json:
+        campaign_header:
+        - ID
+        - Campaign Name
+        - Brand
+        - Product
+        - Start Date
+        - End Date
+        - Status
+    method: POST
+    name: /apicm/Page/Campaign/Campaign/setCampaignHeader
+    url: http://front.test.rmos.com/apicm/Page/Campaign/Campaign/setCampaignHeader
+apicm_Page_Campaign_Base_market:
+    data: {}
+    headers:
+        token: 4bbf7497ee7c508779762db95c8d91600b6b3a0a
+    method: POST
+    name: /apicm/Page/Campaign/Base/market
+    url: http://front.test.rmos.com/apicm/Page/Campaign/Base/market
+apicm_TD_Campaign_Campaign_getAdmasterClickSaikuHistoryReport:
+    headers:
+        content-type: application/json;charset=UTF-8
+        token: 4bbf7497ee7c508779762db95c8d91600b6b3a0a
+    json:
+        end_date: '2018-10-22'
+        market_arr: []
+        order_id: 200069
+        start_date: '2018-10-12'
+    method: POST
+    name: /apicm/TD/Campaign/Campaign/getAdmasterClickSaikuHistoryReport
+    url: http://front.test.rmos.com/apicm/TD/Campaign/Campaign/getAdmasterClickSaikuHistoryReport
+apicm_TD_Campaign_Campaign_getAdmasterImpSaikuHistoryReport:
+    headers:
+        content-type: application/json;charset=UTF-8
+        token: 4bbf7497ee7c508779762db95c8d91600b6b3a0a
+    json:
+        end_date: '2018-10-22'
+        market_arr: []
+        order_id: 200069
+        start_date: '2018-10-12'
+    method: POST
+    name: /apicm/TD/Campaign/Campaign/getAdmasterImpSaikuHistoryReport
+    url: http://front.test.rmos.com/apicm/TD/Campaign/Campaign/getAdmasterImpSaikuHistoryReport
+apicm_TD_Campaign_Campaign_getHistoryData:
+    headers:
+        content-type: application/json;charset=UTF-8
+        token: 4bbf7497ee7c508779762db95c8d91600b6b3a0a
+    json:
+        end_date: '2018-10-22'
+        order_id: 200069
+        start_date: '2018-10-12'
+    method: POST
+    name: /apicm/TD/Campaign/Campaign/getHistoryData
+    url: http://front.test.rmos.com/apicm/TD/Campaign/Campaign/getHistoryData
+apicm_TD_Campaign_Campaign_getListColumn:
+    data: {}
+    headers:
+        token: 4bbf7497ee7c508779762db95c8d91600b6b3a0a
+    method: POST
+    name: /apicm/TD/Campaign/Campaign/getListColumn
+    url: http://front.test.rmos.com/apicm/TD/Campaign/Campaign/getListColumn
+apicm_TD_Campaign_Campaign_getMiaozhenClickSaikuHistoryReport:
+    headers:
+        content-type: application/json;charset=UTF-8
+        token: 4bbf7497ee7c508779762db95c8d91600b6b3a0a
+    json:
+        end_date: '2018-10-22'
+        market_arr: []
+        order_id: 200069
+        start_date: '2018-10-12'
+    method: POST
+    name: /apicm/TD/Campaign/Campaign/getMiaozhenClickSaikuHistoryReport
+    url: http://front.test.rmos.com/apicm/TD/Campaign/Campaign/getMiaozhenClickSaikuHistoryReport
+apicm_TD_Campaign_Campaign_getMiaozhenImpSaikuHistoryReport:
+    headers:
+        content-type: application/json;charset=UTF-8
+        token: 4bbf7497ee7c508779762db95c8d91600b6b3a0a
+    json:
+        end_date: '2018-10-22'
+        market_arr: []
+        order_id: 200069
+        start_date: '2018-10-12'
+    method: POST
+    name: /apicm/TD/Campaign/Campaign/getMiaozhenImpSaikuHistoryReport
+    url: http://front.test.rmos.com/apicm/TD/Campaign/Campaign/getMiaozhenImpSaikuHistoryReport
+apicm_TD_Campaign_Campaign_getOrderStrategyInfo:
+    headers:
+        content-type: application/json;charset=UTF-8
+        token: 4bbf7497ee7c508779762db95c8d91600b6b3a0a
+    json:
+        order_id: 200065
+    method: POST
+    name: /apicm/TD/Campaign/Campaign/getOrderStrategyInfo
+    url: http://front.test.rmos.com/apicm/TD/Campaign/Campaign/getOrderStrategyInfo
+apicm_TD_Campaign_Campaign_getOrderStrategyList:
+    headers:
+        content-type: application/json;charset=UTF-8
+        token: 4bbf7497ee7c508779762db95c8d91600b6b3a0a
+    json:
+        currentPage: 1
+        filter:
+            device: []
+            dsp: []
+            status: []
+        isAll: 0
+        orderBy:
+            end_date: 0
+            start_date: 0
+        perPage: 20
+        searchKey: ''
+    method: POST
+    name: /apicm/TD/Campaign/Campaign/getOrderStrategyList
+    url: http://front.test.rmos.com/apicm/TD/Campaign/Campaign/getOrderStrategyList
+apicm_TD_Campaign_Campaign_getRealtimeData:
+    headers:
+        content-type: application/json;charset=UTF-8
+        token: 4bbf7497ee7c508779762db95c8d91600b6b3a0a
+    json:
+        order_id: 200069
+    method: POST
+    name: /apicm/TD/Campaign/Campaign/getRealtimeData
+    url: http://front.test.rmos.com/apicm/TD/Campaign/Campaign/getRealtimeData
+apicm_TD_Campaign_Campaign_getUserConfig:
+    data: {}
+    headers:
+        token: 4bbf7497ee7c508779762db95c8d91600b6b3a0a
+    method: POST
+    name: /apicm/TD/Campaign/Campaign/getUserConfig
+    url: http://front.test.rmos.com/apicm/TD/Campaign/Campaign/getUserConfig
+apicm_TD_Campaign_Campaign_setListColumn:
+    headers:
+        content-type: application/json;charset=UTF-8
+        token: 4bbf7497ee7c508779762db95c8d91600b6b3a0a
+    json:
+        column_list:
+        - ID
+        - Campaign Name
+        - Advertiser Id
+        - Device
+        - Start Date
+        - End Date
+        - Status
+    method: POST
+    name: /apicm/TD/Campaign/Campaign/setListColumn
+    url: http://front.test.rmos.com/apicm/TD/Campaign/Campaign/setListColumn
+apicm_TD_Campaign_Campaign_setUserConfig:
+    headers:
+        content-type: application/json;charset=UTF-8
+        token: 4bbf7497ee7c508779762db95c8d91600b6b3a0a
+    json:
+        user_config:
+            campainListPage: abiCampaignGroup
+    method: POST
+    name: /apicm/TD/Campaign/Campaign/setUserConfig
+    url: http://front.test.rmos.com/apicm/TD/Campaign/Campaign/setUserConfig
