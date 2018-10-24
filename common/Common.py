@@ -10,7 +10,7 @@ from TestLogger import *
 function_regexp = r"\$\{([\w_]+\([\$\w\.\-/_ =,]*\))\}"
 
 
-def extract_functions(content,cls=None):
+def extract_functions(content,cls):
     '''
     :param content: ${abc(1,2)}
     :return: 执行abc(1,2)函数返回值

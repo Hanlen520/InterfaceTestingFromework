@@ -25,7 +25,7 @@ class TestRequest:
 			resp = requests.post(url, headers=headers, data=data)
 		else:
 			logger.error('method错误：{}'.format(method))
-			return
+			return [-1]
 		return [resp.status_code, resp.json(), resp.elapsed.total_seconds()]
 	
 	@staticmethod
@@ -37,12 +37,17 @@ class TestRequest:
 		:return:
 		'''
 		if not 'file' in request_data.keys():
+			print('file字段缺失')
 			return [-1]
 		file = file_path + '\\' + request_data['file']
 		filename = os.path.split(file)[1]
-		fields = {
-				'file': (os.path.basename(filename), open(file, 'rb'), 'application/octet-stream')
-			}
+		try:
+			fields = {
+					'file': (os.path.basename(filename), open(file, 'rb'), 'application/octet-stream')
+				}
+		except BaseException as e:
+			print('未找到相应文件：{}'.format(file),e)
+			return [-1]
 		for key, value in request_data.items():
 			if key != 'file':
 				fields[key] = value
