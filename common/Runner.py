@@ -52,6 +52,7 @@ def test_class(datas, classname):
 			return_data = extract_functions(data['API Name'], CaseVariable)
 			print('{}'.format(classname) + '\n')
 			print('函数{}执行成功'.format(data['API Name']) + '\n')
+			print('return data: {}'.format(return_data))
 			print('=========================================================================================================')
 			if data['Correlation']:
 				setattr(CaseVariable, data['Correlation'],return_data[1])
@@ -158,6 +159,10 @@ def test_generator(case_datas, isSetupOrCase='case'):
 				cls.assertTrue(return_data[0])
 				print('{}'.format(isSetupOrCase) + '\n')
 				print('函数{}执行成功'.format(case_data['API Name']) + '\n')
+				try:
+					print('return data: {}'.format(return_data[1]))
+				except:
+					print('return data: {}'.format(return_data))
 				print('=========================================================================================================')
 				if case_data['Correlation']:
 					setattr(CaseVariable, case_data['Correlation'], return_data[1])
