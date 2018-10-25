@@ -85,6 +85,7 @@ def getFolderIdByName(token, folder_name):
 	for data in data_list:
 		if data['name'] == folder_name:
 			return data['id']
-		
+	return '未找到对应id'
+
 if __name__ == '__main__':
 	getFolderIdByName('66acce6d4c2af037d6676b02d42b03049f28f2a5','Folder')
