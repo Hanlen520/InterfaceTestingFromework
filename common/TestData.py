@@ -150,7 +150,7 @@ class GetData:
 				test_data = {}
 				table = test_case.sheet_by_name(sheet)
 				test_data['sheet_name'] = filename + '_' +sheet
-				test_data['Active'] = table.cell(10, 1).value      # Active
+				test_data['Active'] = table.cell(2, 1).value      # Active
 				# Active为No则跳过执行
 				if test_data['Active'] == 'No':
 					continue

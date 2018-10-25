@@ -1,0 +1,207 @@
+_:
+    method: GET
+    name: /
+    url: http://front.test.rmos.com/
+api_EgScript_CrossOver_getTheme:
+    method: GET
+    name: /api/EgScript/CrossOver/getTheme
+    params:
+        callback: callback_1540286207079
+        token: e047701094b9946fa2d77a7d0a295ff2dc2e4e17
+    url: http://front.test.rmos.com/api/EgScript/CrossOver/getTheme
+api_Page_Menu_Menu_getList:
+    headers:
+        content-type: application/json;charset=UTF-8
+        token: e047701094b9946fa2d77a7d0a295ff2dc2e4e17
+    json:
+        isAll: 1
+        status: -1
+    method: POST
+    name: /api/Page/Menu/Menu/getList
+    url: http://front.test.rmos.com/api/Page/Menu/Menu/getList
+api_Power_Power_User_getUnreadNum:
+    data: {}
+    headers:
+        token: e047701094b9946fa2d77a7d0a295ff2dc2e4e17
+    method: POST
+    name: /api/Power/Power/User/getUnreadNum
+    url: http://front.test.rmos.com/api/Power/Power/User/getUnreadNum
+api_Power_Power_User_getUserMenu:
+    data: {}
+    headers:
+        token: e047701094b9946fa2d77a7d0a295ff2dc2e4e17
+    method: POST
+    name: /api/Power/Power/User/getUserMenu
+    url: http://front.test.rmos.com/api/Power/Power/User/getUserMenu
+api_pic_default_avatar.png:
+    method: GET
+    name: /api/pic/default_avatar.png
+    url: http://account.test.com/api/pic/default_avatar.png
+api_pic_logo_5b6cfa4048a98.png:
+    method: GET
+    name: /api/pic/logo/5b6cfa4048a98.png
+    url: http://account.test.com/api/pic/logo/5b6cfa4048a98.png
+apicm_Page_DmpTmpl_DmpTmpl_create:
+    headers:
+        content-type: application/json;charset=UTF-8
+        token: e047701094b9946fa2d77a7d0a295ff2dc2e4e17
+    json:
+        dmp_priority: 2
+        dmps:
+        -   dmp_id: 3
+            dmp_name: 秒针
+        -   dmp_id: 9
+            dmp_name: Talking Data
+        media_ids:
+        - 1
+        - 2
+        name: '12'
+        tag_combinations:
+        -   -   checked: false
+                dmp_id: 3
+                dmp_name: 秒针
+                tag_id: '11755'
+                tag_name: 20-34_MB
+            -   checked: false
+                dmp_id: 9
+                dmp_name: Talking Data
+                tag_id: fq8EqAyR
+                tag_name: F
+    method: POST
+    name: /apicm/Page/DmpTmpl/DmpTmpl/create
+    url: http://front.test.rmos.com/apicm/Page/DmpTmpl/DmpTmpl/create
+apicm_Page_DmpTmpl_DmpTmpl_delete:
+    headers:
+        content-type: application/json;charset=UTF-8
+        token: e047701094b9946fa2d77a7d0a295ff2dc2e4e17
+    json:
+        id: 47
+    method: POST
+    name: /apicm/Page/DmpTmpl/DmpTmpl/delete
+    url: http://front.test.rmos.com/apicm/Page/DmpTmpl/DmpTmpl/delete
+apicm_Page_DmpTmpl_DmpTmpl_getInfo:
+    headers:
+        content-type: application/json;charset=UTF-8
+        token: e047701094b9946fa2d77a7d0a295ff2dc2e4e17
+    json:
+        id: 47
+    method: POST
+    name: /apicm/Page/DmpTmpl/DmpTmpl/getInfo
+    url: http://front.test.rmos.com/apicm/Page/DmpTmpl/DmpTmpl/getInfo
+apicm_Page_DmpTmpl_DmpTmpl_getIntersection:
+    headers:
+        content-type: application/json;charset=UTF-8
+        token: e047701094b9946fa2d77a7d0a295ff2dc2e4e17
+    json:
+        tag_combination:
+        -   checked: true
+            dmp_id: 3
+            dmp_name: 秒针
+            tag_id: '11755'
+            tag_name: 20-34_MB
+        -   checked: true
+            dmp_id: 9
+            dmp_name: Talking Data
+            tag_id: fq8EqAyR
+            tag_name: F
+    method: POST
+    name: /apicm/Page/DmpTmpl/DmpTmpl/getIntersection
+    url: http://front.test.rmos.com/apicm/Page/DmpTmpl/DmpTmpl/getIntersection
+apicm_Page_DmpTmpl_DmpTmpl_getList:
+    headers:
+        content-type: application/json;charset=UTF-8
+        token: e047701094b9946fa2d77a7d0a295ff2dc2e4e17
+    json:
+        currentPage: 1
+        isAll: 0
+        perPage: 20
+    method: POST
+    name: /apicm/Page/DmpTmpl/DmpTmpl/getList
+    url: http://front.test.rmos.com/apicm/Page/DmpTmpl/DmpTmpl/getList
+apicm_Page_DmpTmpl_DmpTmpl_getMediaList:
+    headers:
+        token: e047701094b9946fa2d77a7d0a295ff2dc2e4e17
+    method: GET
+    name: /apicm/Page/DmpTmpl/DmpTmpl/getMediaList
+    url: http://front.test.rmos.com/apicm/Page/DmpTmpl/DmpTmpl/getMediaList
+apicm_Page_DmpTmpl_DmpTmpl_getRateByMedia:
+    headers:
+        content-type: application/json;charset=UTF-8
+        token: e047701094b9946fa2d77a7d0a295ff2dc2e4e17
+    json:
+        media_ids:
+        - 1
+        - 2
+        - 5
+    method: POST
+    name: /apicm/Page/DmpTmpl/DmpTmpl/getRateByMedia
+    url: http://front.test.rmos.com/apicm/Page/DmpTmpl/DmpTmpl/getRateByMedia
+apicm_Page_DmpTmpl_DmpTmpl_getTags:
+    headers:
+        content-type: application/json;charset=UTF-8
+        token: e047701094b9946fa2d77a7d0a295ff2dc2e4e17
+    json:
+        dmp_ids:
+        - 3
+        - 9
+    method: POST
+    name: /apicm/Page/DmpTmpl/DmpTmpl/getTags
+    url: http://front.test.rmos.com/apicm/Page/DmpTmpl/DmpTmpl/getTags
+apicm_Page_DmpTmpl_DmpTmpl_update:
+    headers:
+        content-type: application/json;charset=UTF-8
+        token: e047701094b9946fa2d77a7d0a295ff2dc2e4e17
+    json:
+        dmp_priority: 1
+        dmps:
+        -   dmp_id: 3
+            dmp_name: 秒针
+        -   dmp_id: 9
+            dmp_name: Talking Data
+        id: 47
+        media_ids:
+        - 1
+        - 2
+        - 5
+        name: '12'
+        tag_combinations:
+        -   -   checked: false
+                dmp_id: 3
+                dmp_name: 秒针
+                tag_id: '11755'
+                tag_name: 20-34_MB
+            -   checked: false
+                dmp_id: 9
+                dmp_name: Talking Data
+                tag_id: fq8EqAyR
+                tag_name: F
+    method: POST
+    name: /apicm/Page/DmpTmpl/DmpTmpl/update
+    url: http://front.test.rmos.com/apicm/Page/DmpTmpl/DmpTmpl/update
+rmos_4360975fb489204628bc1e1a2c18967e.woff:
+    method: GET
+    name: /rmos/4360975fb489204628bc1e1a2c18967e.woff
+    url: http://front.test.rmos.com/rmos/4360975fb489204628bc1e1a2c18967e.woff
+rmos_app.fce49c215efe99109b6b.js:
+    headers:
+        If-Modified-Since: Tue, 23 Oct 2018 05:52:07 GMT
+        If-None-Match: '"5bceb707-3f871b"'
+    method: GET
+    name: /rmos/app.fce49c215efe99109b6b.js
+    url: http://front.test.rmos.com/rmos/app.fce49c215efe99109b6b.js
+rmos_vendor.9cdccad53dd8e740e091.js:
+    method: GET
+    name: /rmos/vendor.9cdccad53dd8e740e091.js
+    url: http://front.test.rmos.com/rmos/vendor.9cdccad53dd8e740e091.js
+s_opensans_v13_DXI1ORHCpsQm3Vp6mXoaTegdm0LZdjqr5-oayXSOefg.woff2:
+    method: GET
+    name: /s/opensans/v13/DXI1ORHCpsQm3Vp6mXoaTegdm0LZdjqr5-oayXSOefg.woff2
+    url: https://fonts.gstatic.com/s/opensans/v13/DXI1ORHCpsQm3Vp6mXoaTegdm0LZdjqr5-oayXSOefg.woff2
+s_opensans_v13_cJZKeOuBrn4kERxqtaUH3VtXRa8TVwTICgirnJhmVJw.woff2:
+    method: GET
+    name: /s/opensans/v13/cJZKeOuBrn4kERxqtaUH3VtXRa8TVwTICgirnJhmVJw.woff2
+    url: https://fonts.gstatic.com/s/opensans/v13/cJZKeOuBrn4kERxqtaUH3VtXRa8TVwTICgirnJhmVJw.woff2
+s_opensans_v13_k3k702ZOKiLJc3WVjuplzOgdm0LZdjqr5-oayXSOefg.woff2:
+    method: GET
+    name: /s/opensans/v13/k3k702ZOKiLJc3WVjuplzOgdm0LZdjqr5-oayXSOefg.woff2
+    url: https://fonts.gstatic.com/s/opensans/v13/k3k702ZOKiLJc3WVjuplzOgdm0LZdjqr5-oayXSOefg.woff2

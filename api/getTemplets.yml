@@ -101,7 +101,7 @@ apicm_Page_Campaign_Templet_getTempletPreviewList:
         content-type: application/json;charset=UTF-8
         token: b3406a5811a9764b5b27464ed7135abafea9b344
     json:
-        templet_id: 36
+        templet_id: 1
     method: POST
     name: /apicm/Page/Campaign/Templet/getTempletPreviewList
     url: http://front.test.rmos.com/apicm/Page/Campaign/Templet/getTempletPreviewList

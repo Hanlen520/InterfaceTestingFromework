@@ -49,11 +49,13 @@ def test_class(datas, classname):
 		Data = GetData()
 		# 如果执行函数
 		if '${' in  data['API Name']:
-			check = extract_functions(data['API Name'], CaseVariable)
+			return_data = extract_functions(data['API Name'], CaseVariable)
 			print('{}'.format(classname) + '\n')
 			print('函数{}执行成功'.format(data['API Name']) + '\n')
 			print('=========================================================================================================')
-			continue
+			if data['Correlation']:
+				setattr(CaseVariable, data['Correlation'],return_data[1])
+				continue
 		# 根据API NAME找到yml数据
 		yml_data = Data.get_yml_data(Data.change_api_name(data['API Name']))
 		if yml_data == {}:
@@ -152,11 +154,13 @@ def test_generator(case_datas, isSetupOrCase='case'):
 		if case_data['API Name'] != '':
 			# 如果执行函数
 			if '${' in  case_data['API Name']:
-				check = extract_functions(case_data['API Name'], CaseVariable)
-				cls.assertTrue(check)
+				return_data = extract_functions(case_data['API Name'], CaseVariable)
+				cls.assertTrue(return_data[0])
 				print('{}'.format(isSetupOrCase) + '\n')
 				print('函数{}执行成功'.format(case_data['API Name']) + '\n')
 				print('=========================================================================================================')
+				if case_data['Correlation']:
+					setattr(CaseVariable, case_data['Correlation'], return_data[1])
 				return test
 			# 根据API NAME找到yml数据
 			yml_data = Data.get_yml_data(Data.change_api_name(case_data['API Name']))
