@@ -176,7 +176,7 @@ class GetData:
 				# 所有的case信息
 				for j in range(case_row, table.nrows):
 					case = {title[i] : str(table.cell(j, i).value).strip().strip('\r').strip('\n') for i in range(table.ncols)}
-					if case['Active'] == 'No':
+					if case['Active'] == 'No' or case['API Name'] == '':
 						continue
 					caselist.append(case)
 				test_data['setup'] = setup_list
