@@ -70,5 +70,5 @@ def deleteCampaignByName(token, campaignname):
 	resp = TestRequest.test_request(url=url, method='post', headers=headers, data=request_data)
 	return [False, 'code不为0'] if resp[1]['code'] != 0 else [True, resp[1]]
 
-if __name__ == '__main__':
-	deleteCampaignByName('77ce39ab2ca123899e1a831e1d1a9f01bd83fe44','aa')
+# if __name__ == '__main__':
+# 	deleteCampaignByName('77ce39ab2ca123899e1a831e1d1a9f01bd83fe44','aa')
