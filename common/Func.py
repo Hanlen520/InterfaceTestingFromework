@@ -70,5 +70,21 @@ def deleteCampaignByName(token, campaignname):
 	resp = TestRequest.test_request(url=url, method='post', headers=headers, data=request_data)
 	return [False, 'code不为0'] if resp[1]['code'] != 0 else [True, resp[1]]
 
-# if __name__ == '__main__':
-# 	deleteCampaignByName('77ce39ab2ca123899e1a831e1d1a9f01bd83fe44','aa')
+def getFolderIdByName(token, folder_name):
+	if folder_name ==  'not_defined':
+		return 'folder_name not defined'
+	Data = TestData.GetData()
+	host = Data.get_config_data('Host', 'cm_host')
+	getDataSetList_api = '/api/DataSet/Folder/getDataSetList'
+	url = host + getDataSetList_api
+	request_data = json.dumps(Data.get_yml_data(Data.change_api_name(getDataSetList_api))['json'])
+	headers = {'token': token}
+	resp = TestRequest.test_request(url=url, method='post', headers=headers, data=request_data)
+	if resp[0] != 200: return 'status code 不为200'
+	data_list = resp[1]['data']['list']
+	for data in data_list:
+		if data['name'] == folder_name:
+			return data['id']
+		
+if __name__ == '__main__':
+	getFolderIdByName('66acce6d4c2af037d6676b02d42b03049f28f2a5','Folder')
