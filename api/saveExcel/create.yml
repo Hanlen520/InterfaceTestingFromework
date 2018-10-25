@@ -1,0 +1,158 @@
+api_DataSet_Folder_getDataSetList:
+    headers:
+        content-type: application/json;charset=UTF-8
+        token: c548892e2dbdf03181b937df9b5b03188e9c8200
+    json:
+        current_page: 1
+        filter:
+            file_type: []
+            owner: []
+        is_all: 0
+        order_by:
+            create_time: 0
+            data_update_time: 0
+        per_page: 50
+        search: ''
+    method: POST
+    name: /api/DataSet/Folder/getDataSetList
+    url: http://front.test.rmos.com/api/DataSet/Folder/getDataSetList
+api_Upload_Excel_saveExcel:
+    headers:
+        content-type: application/json;charset=UTF-8
+        token: c548892e2dbdf03181b937df9b5b03188e9c8200
+    json:
+        dataset_name: 正确文件
+        datasource: aaa
+        fileName: 正确文件.xlsx
+        folder: 0
+        header:
+        -   data_type: Integer
+            is_add: false
+            is_measures: true
+            is_null: false
+            name: qwe123qweqqwe123qweqqwe123qweqqwe123qweqqwe123qweqqwe123qweqqwe123qweqqwe123qweqqwe123qweqqwe123qweqqwe123qweqqwe123qwe
+        -   data_type: Integer
+            is_add: false
+            is_measures: true
+            is_null: false
+            name: 订单Id
+        -   data_type: Integer
+            is_add: false
+            is_measures: true
+            is_null: false
+            name: 活动Id
+        -   data_type: Date
+            is_add: false
+            is_measures: false
+            is_null: false
+            name: 日期
+        -   data_type: Varchar
+            is_add: false
+            is_measures: false
+            is_null: false
+            name: 活动名称qqqqqqq活动名称qqqqqqq
+        -   data_type: Varchar
+            is_add: false
+            is_measures: false
+            is_null: false
+            name: 产品
+        -   data_type: Varchar
+            is_add: false
+            is_measures: false
+            is_null: false
+            name: 媒体
+        -   data_type: Integer
+            is_add: false
+            is_measures: true
+            is_null: false
+            name: 时长
+        -   data_type: Varchar
+            is_add: false
+            is_measures: false
+            is_null: false
+            name: 广告位
+        -   data_type: Varchar
+            is_add: false
+            is_measures: false
+            is_null: false
+            name: 频道
+        -   data_type: Varchar
+            is_add: false
+            is_measures: false
+            is_null: false
+            name: 市场
+        -   data_type: Varchar
+            is_add: false
+            is_measures: false
+            is_null: false
+            name: 素材版本
+        -   data_type: Varchar
+            is_add: false
+            is_measures: false
+            is_null: false
+            name: 曝光监测代码1
+        -   data_type: Varchar
+            is_add: false
+            is_measures: false
+            is_null: false
+            name: 曝光监测代码2
+        -   data_type: Varchar
+            is_add: false
+            is_measures: false
+            is_null: false
+            name: 监测请求发送时间点1
+        -   data_type: Varchar
+            is_add: false
+            is_measures: false
+            is_null: false
+            name: 监测请求发送时间点2
+        -   data_type: Varchar
+            is_add: false
+            is_measures: false
+            is_null: false
+            name: 监测请求发送时间点3
+        -   data_type: Varchar
+            is_add: false
+            is_measures: false
+            is_null: false
+            name: 监测请求发送时间点4
+        -   data_type: Varchar
+            is_add: false
+            is_measures: false
+            is_null: false
+            name: placement_name
+        -   data_type: Varchar
+            is_add: false
+            is_measures: false
+            is_null: false
+            name: copy_name
+        -   data_type: Varchar
+            is_add: false
+            is_measures: false
+            is_null: false
+            name: spot_plan
+        -   data_type: Varchar
+            is_add: false
+            is_measures: false
+            is_null: false
+            name: hy
+        -   data_type: Integer
+            is_add: false
+            is_measures: true
+            is_null: false
+            name: '22'
+    method: POST
+    name: /api/Upload/Excel/saveExcel
+    url: http://front.test.rmos.com/api/Upload/Excel/saveExcel
+api_Upload_Excel_uploadExcel:
+    data: "------WebKitFormBoundary5zeyHcKATBDXg8CF\r\nContent-Disposition: form-data;\
+        \ name=\"file\"; filename=\"正确文件.xlsx\"\r\nContent-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet\r\
+        \n\r\n\r\n------WebKitFormBoundary5zeyHcKATBDXg8CF\r\nContent-Disposition:\
+        \ form-data; name=\"isAdd\"\r\n\r\n0\r\n------WebKitFormBoundary5zeyHcKATBDXg8CF--\r\
+        \n"
+    headers:
+        content-type: multipart/form-data; boundary=----WebKitFormBoundary5zeyHcKATBDXg8CF
+        token: c548892e2dbdf03181b937df9b5b03188e9c8200
+    method: POST
+    name: /api/Upload/Excel/uploadExcel
+    url: http://front.test.rmos.com/api/Upload/Excel/uploadExcel

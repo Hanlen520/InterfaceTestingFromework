@@ -1,0 +1,38 @@
+api_DataSet_Folder_getDataSetList:
+    headers:
+        content-type: application/json;charset=UTF-8
+        token: 0b99f627320a898775f961aa238cd4a976a50351
+    json:
+        current_page: 1
+        filter:
+            file_type: []
+            owner: []
+        is_all: 0
+        order_by:
+            create_time: 0
+            data_update_time: 0
+        per_page: 50
+        search: ''
+    method: POST
+    name: /api/DataSet/Folder/getDataSetList
+    url: http://front.test.rmos.com/api/DataSet/Folder/getDataSetList
+api_DataSet_Manage_delete:
+    headers:
+        content-type: application/json;charset=UTF-8
+        token: 0b99f627320a898775f961aa238cd4a976a50351
+    json:
+        table_id: 1821
+        table_type: 3
+    method: POST
+    name: /api/DataSet/Manage/delete
+    url: http://front.test.rmos.com/api/DataSet/Manage/delete
+api_DataSet_Manage_getDataSetCaseList:
+    headers:
+        content-type: application/json;charset=UTF-8
+        token: 0b99f627320a898775f961aa238cd4a976a50351
+    json:
+        table_id: 1821
+        table_type: 0
+    method: POST
+    name: /api/DataSet/Manage/getDataSetCaseList
+    url: http://front.test.rmos.com/api/DataSet/Manage/getDataSetCaseList
