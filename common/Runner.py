@@ -85,7 +85,7 @@ def test_class(datas, classname):
 						new_v = parse_string_value(getattr(CaseVariable, v.replace('$', ''), None))
 					# 字符串
 					else:
-						new_v = v
+						new_v = parse_string_value(v)
 					change_data(yml_data, new_v, k)
 		# 如果没有API NAME信息失败
 		method = data['method']
@@ -118,6 +118,21 @@ def test_class(datas, classname):
 			print(method)
 		get_summary(url=url, method=method, resp=resp, headers=headers,
 		            request_data=request_data)
+		correlation = data['Correlation']
+		# 取值，保存为类变量
+		if correlation:
+			for key, value in correlation.items():
+				# 区分request和resp，分别取值
+				if 'request.' in value:
+					if 'json' in value:
+						value = parse_string(value.replace('request.json.', ''))
+						setattr(CaseVariable, key, eval(str(json.loads(request_data)) + str(value)))
+					else:
+						value = parse_string(value.replace('request.data.', ''))
+						setattr(CaseVariable, key, eval(str(request_data) + str(value)))
+				else:
+					value = parse_string(value)
+					setattr(CaseVariable, key, eval(str(resp[1]) + str(value)))
 	return True
 
 def test_generator(case_datas, isSetupOrCase='case'):
@@ -175,7 +190,7 @@ def test_generator(case_datas, isSetupOrCase='case'):
 							cls.assertIsNotNone(new_v, '未定义变量{}'.format(v))
 						# 字符串
 						else:
-							new_v = v
+							new_v = parse_string_value(v)
 						change_data(yml_data, new_v, k)
 		# 如果没有API NAME信息失败
 		cls.assertIsNotNone(yml_data,'没有读取到API NAME信息')
@@ -247,7 +262,7 @@ def test_generator(case_datas, isSetupOrCase='case'):
 							cls.assertTrue(set(new_value) < set(assert_value), '{}值不在{}中'.format(new_value, key))
 						else:
 							cls.assertTrue(new_value in assert_value, '{}值不在{}中'.format(new_value, key))
-					elif str(assertMethod).lower() == 'not in':
+					elif str(assertMethod).lower() == 'notin':
 						if type(new_value) == list:
 							cls.assertNotTrue(set(new_value) < set(assert_value), '{}值不在{}中'.format(new_value, key))
 						else:
@@ -338,12 +353,12 @@ def run_test():
 	# 	description=u'用例执行情况：')
 	# runner.run(test_suite)
 	
-	runner = unittest.TextTestRunner()
-	result = runner.run(test_suite)
-	print(result)
+	# runner = unittest.TextTestRunner()
+	# result = runner.run(test_suite)
+	# print(result)
 	
-	# result = BeautifulReport(test_suite)
-	# result.report(filename= filename, description ='接口测试', log_path =report_path)
+	result = BeautifulReport(test_suite)
+	result.report(filename= filename, description ='接口测试', log_path =report_path)
 
 
 if __name__ == "__main__":
