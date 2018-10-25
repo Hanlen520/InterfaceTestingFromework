@@ -5,7 +5,6 @@ import re
 import ast
 import pymysql
 from Func import *
-from TestLogger import *
 
 function_regexp = r"\$\{([\w_]+\([\$\w\.\-/_ =,]*\))\}"
 

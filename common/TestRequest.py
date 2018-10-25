@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 #coding=utf-8
 
+import os
 import requests
 import random
-from TestLogger import *
 from requests_toolbelt.multipart.encoder import MultipartEncoder
 
 file_path = os.path.abspath('..') + '\\file'
