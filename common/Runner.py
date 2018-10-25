@@ -239,43 +239,46 @@ def test_generator(case_datas, isSetupOrCase='case'):
 		if check_point:
 			for key, value in check_point.items():
 				if '${' in key:
-					key = parse_string_value(extract_functions(key, CaseVariable))
-					cls.assertIsNotNone(key)
+					new_key = parse_string_value(extract_functions(key, CaseVariable))
+					cls.assertIsNotNone(new_key)
+				elif '$' in key:
+					new_key = parse_string_value(getattr(CaseVariable, key.replace('$', ''), None))
+					cls.assertIsNotNone(new_key)
 				else:
 					# 转换形式data1.data2 ==> [data1][data2]
-					key = parse_string(key)
+					new_key = parse_string(key)
 				if type(value) == str:
 					# 值为字符串直接对比
 					new_value = getattr(CaseVariable, value.replace('$', ''), None) if '$' in value else value
 					cls.assertIsNotNone(new_value, '未定义变量{}'.format(value))
-					if '${' in key:
-						cls.assertEqual(key, new_value, '{}值不为{}'.format(key, new_value))
+					if '$' in key:
+						cls.assertEqual(new_key, new_value, '{}值不为{}'.format(new_key, new_value))
 					else:
-						cls.assertEqual(eval(str(resp[1]) + str(key)), new_value, '{}值不为{}'.format(key, new_value))
+						cls.assertEqual(eval(str(resp[1]) + str(new_key)), new_value, '{}值不为{}'.format(new_key, new_value))
 				elif type(value) == list:
 					# 值为列表取对比方法
 					# 目前支持=、in、not in
 					new_value = getattr(CaseVariable, value[0].replace('$', ''), None) if '$' in value[0] else value[0]
 					# 不为列表转换为字符串进行对比
 					new_value = str(new_value) if type(new_value) != list else new_value
-					if '${' in key:
-						assert_value = key
+					if '$' in key:
+						assert_value = new_key
 					else:
-						assert_value = str(eval(str(resp[1]) + str(key))) if type(eval(str(resp[1]) + str(key))) != list else eval(str(resp[1]) + str(key))
+						assert_value = str(eval(str(resp[1]) + str(new_key))) if type(eval(str(resp[1]) + str(new_key))) != list else eval(str(resp[1]) + str(new_key))
 					cls.assertIsNotNone(new_value, '未定义变量{}'.format(value))
 					assertMethod = value[1]
 					if assertMethod == '=':
-						cls.assertTrue(assert_value == new_value,  '{}值不为{}'.format(key, new_value))
+						cls.assertTrue(assert_value == new_value,  '{}值不为{}'.format(new_key, new_value))
 					elif str(assertMethod).lower() == 'in':
 						if type(new_value) == list:
-							cls.assertTrue(set(new_value) < set(assert_value), '{}值不在{}中'.format(new_value, key))
+							cls.assertTrue(set(new_value) < set(assert_value), '{}值不在{}中'.format(new_value, new_key))
 						else:
-							cls.assertTrue(new_value in assert_value, '{}值不在{}中'.format(new_value, key))
+							cls.assertTrue(new_value in assert_value, '{}值不在{}中'.format(new_value, new_key))
 					elif str(assertMethod).lower() == 'notin':
 						if type(new_value) == list:
-							cls.assertNotTrue(set(new_value) < set(assert_value), '{}值不在{}中'.format(new_value, key))
+							cls.assertNotTrue(set(new_value) < set(assert_value), '{}值不在{}中'.format(new_value, new_key))
 						else:
-							cls.assertTrue(new_value not in eval(str(resp[1]) + str(key)),'{}值在{}中'.format(new_value, key))
+							cls.assertTrue(new_value not in eval(str(resp[1]) + str(new_key)),'{}值在{}中'.format(new_value, new_key))
 					# 错误的断言方法
 					else:
 						print(check_point)
