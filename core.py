@@ -125,7 +125,7 @@ class HarParser(object):
                 if not self.user_agent:
                     self.user_agent = header["value"]
                 continue
-
+            header["name"] = 'content-type' if header["name"] == 'Content-Type' else header["name"]
             testcase_headers[header["name"]] = header["value"]
 
         if testcase_headers:
