@@ -31,7 +31,7 @@ def extract_functions(content,cls):
         try:
             return eval(content)(params)
         except BaseException as e:
-            logger.error(u'参数输入错误：{}, {}'.format(params, e))
+            print(u'参数输入错误：{}, {}'.format(params, e))
             return
     else:
         params = '(' + ','.join(params) + ')'
@@ -39,7 +39,7 @@ def extract_functions(content,cls):
         try:
             return eval(content)
         except BaseException as e:
-            logger.error(u'参数输入错误：{}, {}'.format(params, e))
+            print(u'参数输入错误：{}, {}'.format(params, e))
             return
         
 def parse_string_value(str_value):
@@ -73,7 +73,7 @@ def change_data(data, value, k, i=0):
     :param i: 不需要填，缺省为0
     '''
     if not isinstance(k, list):
-        logger.warning('参数输入错误: {}'.format(k))
+        print('参数输入错误: {}'.format(k))
         return
     if i == len(k) - 1:
         data[k[i]] = value
@@ -110,16 +110,16 @@ def manipulate_database(host, user, password, sql):
     try:
         db = pymysql.connect(host, user, password)
     except BaseException as e:
-        logger.error('连接数据库失败：{}'.format(e))
+        print('连接数据库失败：{}'.format(e))
         return
     cursor = db.cursor()
     try:
         cursor.execute(sql)
         db.commit()
         results = cursor.fetchall()
-        logger.info('sql语句执行结果: {}'.format(results))
+        print('sql语句执行结果: {}'.format(results))
     except BaseException as e:
-        logger.error("unable to fetch data",e)
+        print("unable to fetch data",e)
         db.rollback()
     db.close()
 

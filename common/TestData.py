@@ -32,7 +32,7 @@ class GetData:
 		if operation['API Name'] != '':
 			yml_data = self.get_yml_data(self.change_api_name(operation['API Name']))
 			if not yml_data:
-				logger.warning(u'没有对应的yml数据：{}'.format(self.change_api_name(operation['API Name'])))
+				print(u'没有对应的yml数据：{}'.format(self.change_api_name(operation['API Name'])))
 				return {}
 			# 逐个替换数据
 			for i in args:
@@ -68,14 +68,14 @@ class GetData:
 			try:
 				value = config.get(section, option)
 			except BaseException as e:
-				logger.error(u'未找到相应的配置文件信息： section:{}, option:{}'.format(section, option), e)
+				print(u'未找到相应的配置文件信息： section:{}, option:{}'.format(section, option), e)
 				value = ''
 		else:
 			try:
 				options = config.options(section)
 				value = {option: config.get(section, option) for option in options}
 			except BaseException as e:
-				logger.error(u'未找到相应的配置文件信息： section:{}'.format(section), e)
+				print(u'未找到相应的配置文件信息： section:{}'.format(section), e)
 				value = ''
 		return value
 	
@@ -110,7 +110,7 @@ class GetData:
 			try:
 				check_point = check_point.split(';') if check_point != '' else ''
 			except BaseException as e:
-				logger.error('check point填写错误：{}'.format(check_point))
+				print('check point填写错误：{}'.format(check_point))
 			# 如："Check Point": { "code": ["0","=" ], "data.ord_id": [ "1","in"],"msg": ["\u6210\u529f","="]
 			check_point = {re.split('\s.*?\s', c)[1]:[re.split('\s.*?\s', c)[0], re.findall('\s(.*?)\s', c)[0]] for c in check_point} if check_point != '' else ''
 		return check_point

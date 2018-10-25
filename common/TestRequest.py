@@ -24,7 +24,7 @@ class TestRequest:
 		elif str(method).lower() == 'post':
 			resp = requests.post(url, headers=headers, data=data)
 		else:
-			logger.error('method错误：{}'.format(method))
+			print('method错误：{}'.format(method))
 			return [-1]
 		return [resp.status_code, resp.json(), resp.elapsed.total_seconds()]
 	
