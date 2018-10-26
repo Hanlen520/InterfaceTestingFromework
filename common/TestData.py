@@ -8,6 +8,7 @@ import json
 import configparser
 from Common import *
 
+
 class GetData:
 
 	def __init__(self):
@@ -110,9 +111,10 @@ class GetData:
 			try:
 				check_point = check_point.split(';') if check_point != '' else ''
 			except BaseException as e:
-				print('check point填写错误：{}'.format(check_point))
+				print('check point填写错误：{}'.format(check_point), e)
 			# 如："Check Point": { "code": ["0","=" ], "data.ord_id": [ "1","in"],"msg": ["\u6210\u529f","="]
-			check_point = {re.split('\s.*?\s', c)[1]:[re.split('\s.*?\s', c)[0], re.findall('\s(.*?)\s', c)[0]] for c in check_point} if check_point != '' else ''
+			check_point = {re.split('\s.*?\s', c)[1]:[re.split('\s.*?\s', c)[0],
+			               re.findall('\s(.*?)\s', c)[0]] for c in check_point} if check_point != '' else ''
 		return check_point
 	
 	def change_case_info(self, case):
@@ -126,7 +128,7 @@ class GetData:
 		host = str(case['Host']).strip()
 		if host != '':
 			host = self.get_config_data('Host', host)
-			case['url'] = host + '/' + case['url'].split('/',3)[-1]
+			case['url'] = host + '/' + case['url'].split('/', 3)[-1]
 		case['Correlation'] = parse_data(case['Correlation'])
 		case['Check Point'] = self.change_check_point(case['Check Point'])
 		return case
@@ -141,7 +143,7 @@ class GetData:
 		all_caseinfo = []
 		# 遍历所有要执行的excel
 		for file in files:
-			filename = os.path.split(file)[1].replace('.xlsx','')
+			filename = os.path.split(file)[1].replace('.xlsx', '')
 			test_case = xlrd.open_workbook(file)
 			sheets = test_case.sheet_names()
 			sheetinfo = []
@@ -149,7 +151,7 @@ class GetData:
 			for sheet in sheets:
 				test_data = {}
 				table = test_case.sheet_by_name(sheet)
-				test_data['sheet_name'] = filename + '_' +sheet
+				test_data['sheet_name'] = filename + '_' + sheet
 				test_data['Active'] = table.cell(2, 1).value      # Active
 				# Active为No则跳过执行
 				if test_data['Active'] == 'No':
@@ -163,19 +165,22 @@ class GetData:
 				# 获取setup、teardown信息行数
 				for i in range(5, table.nrows):
 					description = str(table.cell(i, 0).value).strip().strip('\r').strip('\n').lower()
-					if description != 'setupclass' and description != 'teardownclass' and description != 'teardown' and description != 'setup':
+					if description != 'setupclass' and description != 'teardownclass' and description != 'teardown' \
+							and description != 'setup':
 						case_row = i
 						break
 				# setup、teardown、setupclass、teardownclass数据
-				setup_or_teardown = [{title[i]: str(table.cell(j, i).value).strip().strip('\r').strip('\n') for i in range(table.ncols)} for j in range(5, case_row)]
+				setup_or_teardown = [{title[i]: str(table.cell(j, i).value).strip().strip('\r').strip('\n')
+				                      for i in range(table.ncols)} for j in range(5, case_row)]
 				setup_list = [setup for setup in setup_or_teardown if str(setup['No.']).lower() == 'setup']
 				teardown_list = [teardown for teardown in setup_or_teardown if str(teardown['No.']).lower() == 'teardown']
 				setupclass_list = [setupclass for setupclass in setup_or_teardown if str(setupclass['No.']).lower() == 'setupclass']
-				teardownclass_list = [teardownclass for teardownclass in setup_or_teardown if str(teardownclass['No.']).lower() == 'teardownclass']
+				teardownclass_list = [teardownclass for teardownclass in setup_or_teardown
+				                      if str(teardownclass['No.']).lower() == 'teardownclass']
 				caselist = []
 				# 所有的case信息
 				for j in range(case_row, table.nrows):
-					case = {title[i] : str(table.cell(j, i).value).strip().strip('\r').strip('\n') for i in range(table.ncols)}
+					case = {title[i]: str(table.cell(j, i).value).strip().strip('\r').strip('\n') for i in range(table.ncols)}
 					if case['Active'] == 'No' or case['API Name'] == '':
 						continue
 					caselist.append(case)
@@ -187,5 +192,6 @@ class GetData:
 				sheetinfo.append(test_data)
 			all_caseinfo.append(sheetinfo)
 		return all_caseinfo
+	
 if __name__ == '__main__':
 	GetData().get_case_data()

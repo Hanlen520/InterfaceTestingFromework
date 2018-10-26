@@ -45,7 +45,7 @@ def deleteDataSetByName(token, datasetname):
 
 def deleteCampaignByName(token, campaignname):
 	if campaignname ==  'not_defined':
-		return [True,'campaignname未定义']
+		return [True, 'campaignname未定义']
 	Data = TestData.GetData()
 	host = Data.get_config_data('Host', 'cm_host')
 	api = '/apicm/Page/Campaign/Campaign/getRmosList'
