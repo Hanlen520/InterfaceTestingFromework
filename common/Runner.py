@@ -40,7 +40,7 @@ def tearDownClass(cls):
 	cls.end_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
 	print("End test at {}".format(cls.end_time))
 	timestamp = time.mktime(time.strptime(cls.end_time, "%Y-%m-%d %H:%M:%S")) - \
-	            time.mktime(time.strptime(cls.start_time, "%Y-%m-%d %H:%M:%S"))
+				time.mktime(time.strptime(cls.start_time, "%Y-%m-%d %H:%M:%S"))
 	print('\n运行时间：{}秒'.format(timestamp))
 	
 	
@@ -240,7 +240,7 @@ def test_generator(case_datas, isSetupOrCase='case'):
 		# status code为200
 		cls.assertEqual(resp[0], 200, '\nrequest: {}\nresponse: {}'.format(request_data, resp))
 		get_summary(url=url, method=method, resp=resp, isSetupOrCase=isSetupOrCase, headers=headers,
-		            request_data=request_data)
+					request_data=request_data)
 		check_point = case_data['Check Point']
 		if check_point:
 			for key, value in check_point.items():
